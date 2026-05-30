@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.env
+.env.*
+node_modules/
+.cursor/
+.shell-test

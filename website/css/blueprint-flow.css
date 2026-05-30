@@ -1,0 +1,496 @@
+/* Blueprint — proposed app & web system animation (8 steps) */
+
+.blueprint-flow {
+  margin: 1.5rem 0 2rem;
+  max-width: 52rem;
+}
+
+.blueprint-flow__stage {
+  position: relative;
+  min-height: 220px;
+  background: linear-gradient(165deg, var(--color-sky) 0%, var(--color-mist) 50%, #fff 100%);
+  border: 2px solid var(--color-river-light);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-river-glow);
+  overflow: hidden;
+}
+
+.blueprint-flow__scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.blueprint-flow__step-num {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.85rem;
+  background: var(--color-forest);
+  color: #fff;
+  border-radius: 50%;
+}
+
+.blueprint-flow__icon {
+  font-size: 2.5rem;
+  color: var(--color-river);
+  margin-bottom: 0.35rem;
+}
+
+.blueprint-flow__scene-label {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-forest);
+}
+
+/* —— Scene timing: 56s loop, 7s per step —— */
+.blueprint-flow__scene--1 { animation: bpScene1 56s ease-in-out infinite; }
+.blueprint-flow__scene--2 { animation: bpScene2 56s ease-in-out infinite; }
+.blueprint-flow__scene--3 { animation: bpScene3 56s ease-in-out infinite; }
+.blueprint-flow__scene--4 { animation: bpScene4 56s ease-in-out infinite; }
+.blueprint-flow__scene--5 { animation: bpScene5 56s ease-in-out infinite; }
+.blueprint-flow__scene--6 { animation: bpScene6 56s ease-in-out infinite; }
+.blueprint-flow__scene--7 { animation: bpScene7 56s ease-in-out infinite; }
+.blueprint-flow__scene--8 { animation: bpScene8 56s ease-in-out infinite; }
+
+@keyframes bpScene1 { 0%, 1% { opacity: 0; transform: scale(0.96); } 2%, 11.5% { opacity: 1; transform: scale(1); } 13%, 100% { opacity: 0; transform: scale(0.98); } }
+@keyframes bpScene2 { 0%, 11% { opacity: 0; } 12.5%, 23.5% { opacity: 1; transform: scale(1); } 25%, 100% { opacity: 0; } }
+@keyframes bpScene3 { 0%, 23% { opacity: 0; } 25%, 36.5% { opacity: 1; } 38%, 100% { opacity: 0; } }
+@keyframes bpScene4 { 0%, 36% { opacity: 0; } 37.5%, 48.5% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@keyframes bpScene5 { 0%, 48% { opacity: 0; } 50%, 61.5% { opacity: 1; } 63%, 100% { opacity: 0; } }
+@keyframes bpScene6 { 0%, 61% { opacity: 0; } 62.5%, 73.5% { opacity: 1; } 75%, 100% { opacity: 0; } }
+@keyframes bpScene7 { 0%, 73% { opacity: 0; } 75%, 86.5% { opacity: 1; } 88%, 100% { opacity: 0; } }
+@keyframes bpScene8 { 0%, 86% { opacity: 0; } 87.5%, 98% { opacity: 1; } 100% { opacity: 0; } }
+
+/* —— Mini illustrations —— */
+.blueprint-flow__illus {
+  position: relative;
+  width: 200px;
+  height: 72px;
+}
+
+.blueprint-flow__illus--phone .blueprint-flow__phone-screen {
+  display: block;
+  width: 56px;
+  height: 96px;
+  margin: -12px auto 0;
+  background: #1a2e1a;
+  border: 3px solid var(--color-forest);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.blueprint-flow__illus--phone .blueprint-flow__phone-screen::after {
+  content: '';
+  display: block;
+  margin: 14px auto;
+  width: 36px;
+  height: 28px;
+  background: radial-gradient(circle, #e8b84a 30%, #a67c52 70%);
+  border-radius: 50%;
+}
+
+.blueprint-flow__flash {
+  position: absolute;
+  top: 0;
+  right: 20%;
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border-radius: 50%;
+  animation: bpFlash 1.2s ease-in-out infinite;
+}
+
+@keyframes bpFlash {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.blueprint-flow__data-chip {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.45rem;
+  margin: 0.15rem;
+  background: #fff;
+  border: 1px solid var(--color-moss);
+  border-radius: 6px;
+  color: var(--color-forest);
+}
+
+.blueprint-flow__arrow-up {
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 0.35rem auto;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 14px solid var(--color-river);
+  animation: bpBounceUp 1s ease-in-out infinite;
+}
+
+@keyframes bpBounceUp {
+  0%, 100% { transform: translateY(4px); opacity: 0.6; }
+  50% { transform: translateY(-4px); opacity: 1; }
+}
+
+.blueprint-flow__server {
+  display: block;
+  width: 64px;
+  height: 36px;
+  margin: 0 auto;
+  background: var(--color-river);
+  border-radius: 6px;
+  box-shadow: 0 2px 0 var(--color-forest);
+}
+
+.blueprint-flow__server::before {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: 8px 0 0 10px;
+  background: var(--color-leaf);
+  border-radius: 50%;
+  box-shadow: 14px 0 0 var(--color-leaf), 28px 0 0 var(--color-sunrise);
+}
+
+.blueprint-flow__ai-brain {
+  display: block;
+  width: 72px;
+  height: 56px;
+  margin: 0 auto;
+  background: var(--color-canopy);
+  border-radius: 36px 36px 20px 20px;
+}
+
+.blueprint-flow__ai-check {
+  position: absolute;
+  right: 28%;
+  bottom: 0;
+  font-size: 2rem;
+  color: var(--color-moss);
+  animation: bpCheckPop 56s ease-in-out infinite;
+}
+
+@keyframes bpCheckPop {
+  0%, 24% { transform: scale(0); opacity: 0; }
+  28%, 36% { transform: scale(1.1); opacity: 1; }
+  40%, 100% { transform: scale(1); opacity: 0; }
+}
+
+.blueprint-flow__illus--map {
+  width: 240px;
+  height: 80px;
+  background: rgba(168, 213, 162, 0.5);
+  border-radius: 12px;
+  border: 2px dashed var(--color-canopy);
+}
+
+.blueprint-flow__map-pin {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--color-invasive-alert);
+  border: 2px solid #fff;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+}
+
+.blueprint-flow__map-pin--a { top: 30%; left: 25%; }
+.blueprint-flow__map-pin--b { top: 50%; left: 48%; animation: bpPinPulse 1.5s ease-in-out infinite; }
+.blueprint-flow__map-pin--c { top: 35%; right: 22%; animation: bpPinPulse 1.5s 0.3s ease-in-out infinite; }
+
+@keyframes bpPinPulse {
+  0%, 100% { transform: rotate(-45deg) scale(1); }
+  50% { transform: rotate(-45deg) scale(1.25); }
+}
+
+.blueprint-flow__volunteer-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  background: var(--color-sunrise);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  animation: bpBadgeShake 2s ease-in-out infinite;
+}
+
+@keyframes bpBadgeShake {
+  0%, 100% { transform: translateX(-50%); }
+  10%, 30% { transform: translateX(-48%); }
+  20%, 40% { transform: translateX(-52%); }
+}
+
+.blueprint-flow__person {
+  position: absolute;
+  left: 20%;
+  bottom: 0;
+  width: 28px;
+  height: 48px;
+  background: var(--color-river);
+  border-radius: 14px 14px 4px 4px;
+}
+
+.blueprint-flow__person::before {
+  content: '';
+  position: absolute;
+  top: -18px;
+  left: 4px;
+  width: 20px;
+  height: 20px;
+  background: #f5d0a8;
+  border-radius: 50%;
+}
+
+.blueprint-flow__secure-box {
+  position: absolute;
+  right: 18%;
+  bottom: 4px;
+  width: 56px;
+  height: 40px;
+  background: var(--color-earth);
+  border: 3px solid var(--color-forest);
+  border-radius: 6px;
+}
+
+.blueprint-flow__lock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.25rem;
+  color: var(--color-leaf);
+}
+
+.blueprint-flow__dispose-path,
+.blueprint-flow__bio-handoff {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.5rem 0.75rem;
+  margin: 0.25rem;
+  border-radius: 8px;
+}
+
+.blueprint-flow__dispose-path {
+  background: var(--color-stone);
+  color: var(--color-forest);
+}
+
+.blueprint-flow__bio-handoff {
+  background: var(--color-river);
+  color: #fff;
+}
+
+.blueprint-flow__bar {
+  display: inline-block;
+  width: 28px;
+  margin: 0 4px;
+  background: var(--color-moss);
+  border-radius: 4px 4px 0 0;
+  vertical-align: bottom;
+}
+
+.blueprint-flow__bar--1 { height: 28px; animation: bpBarGrow 1.2s ease-in-out infinite; }
+.blueprint-flow__bar--2 { height: 44px; animation: bpBarGrow 1.2s 0.15s ease-in-out infinite; }
+.blueprint-flow__bar--3 { height: 36px; animation: bpBarGrow 1.2s 0.3s ease-in-out infinite; }
+
+@keyframes bpBarGrow {
+  0%, 100% { transform: scaleY(0.85); }
+  50% { transform: scaleY(1.1); }
+}
+
+.blueprint-flow__reward-mug {
+  display: inline-block;
+  width: 36px;
+  height: 32px;
+  background: var(--color-forest);
+  border-radius: 0 0 8px 8px;
+  vertical-align: bottom;
+}
+
+.blueprint-flow__reward-mug::before {
+  content: '';
+  display: block;
+  width: 14px;
+  height: 10px;
+  margin-left: 36px;
+  margin-top: 8px;
+  border: 3px solid var(--color-forest);
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+}
+
+.blueprint-flow__reward-star {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-size: 2rem;
+  animation: bpStarSpin 2s linear infinite;
+}
+
+.blueprint-flow__reward-star::before {
+  content: '★';
+  color: var(--color-sunrise);
+}
+
+@keyframes bpStarSpin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.15); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Captions */
+.blueprint-flow__captions {
+  position: relative;
+  min-height: 4.5rem;
+  margin-top: 1.25rem;
+}
+
+.blueprint-flow__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0 0.25rem;
+  font-size: clamp(0.92rem, 2.4vw, 1.05rem);
+  line-height: 1.5;
+  color: var(--color-text);
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.blueprint-flow__caption strong {
+  color: var(--color-forest);
+}
+
+.blueprint-flow__caption--1 { animation: bpCap1 56s ease-in-out infinite; }
+.blueprint-flow__caption--2 { animation: bpCap2 56s ease-in-out infinite; }
+.blueprint-flow__caption--3 { animation: bpCap3 56s ease-in-out infinite; }
+.blueprint-flow__caption--4 { animation: bpCap4 56s ease-in-out infinite; }
+.blueprint-flow__caption--5 { animation: bpCap5 56s ease-in-out infinite; }
+.blueprint-flow__caption--6 { animation: bpCap6 56s ease-in-out infinite; }
+.blueprint-flow__caption--7 { animation: bpCap7 56s ease-in-out infinite; }
+.blueprint-flow__caption--8 { animation: bpCap8 56s ease-in-out infinite; }
+
+@keyframes bpCap1 { 0%, 2% { opacity: 1; transform: translateY(0); } 11%, 100% { opacity: 0; transform: translateY(-6px); } }
+@keyframes bpCap2 { 0%, 11% { opacity: 0; } 12.5%, 14% { opacity: 1; transform: translateY(0); } 24%, 100% { opacity: 0; } }
+@keyframes bpCap3 { 0%, 23% { opacity: 0; } 25%, 27% { opacity: 1; transform: translateY(0); } 36%, 100% { opacity: 0; } }
+@keyframes bpCap4 { 0%, 36% { opacity: 0; } 37.5%, 39% { opacity: 1; transform: translateY(0); } 48%, 100% { opacity: 0; } }
+@keyframes bpCap5 { 0%, 48% { opacity: 0; } 50%, 52% { opacity: 1; transform: translateY(0); } 61%, 100% { opacity: 0; } }
+@keyframes bpCap6 { 0%, 61% { opacity: 0; } 62.5%, 64% { opacity: 1; transform: translateY(0); } 73%, 100% { opacity: 0; } }
+@keyframes bpCap7 { 0%, 73% { opacity: 0; } 75%, 77% { opacity: 1; transform: translateY(0); } 86%, 100% { opacity: 0; } }
+@keyframes bpCap8 { 0%, 86% { opacity: 0; } 87.5%, 89% { opacity: 1; transform: translateY(0); } 98%, 100% { opacity: 0; } }
+
+/* Step dots */
+.blueprint-flow__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.blueprint-flow__dots li {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-stone);
+}
+
+.blueprint-flow__dots li:nth-child(1) { animation: bpDot1 56s ease-in-out infinite; }
+.blueprint-flow__dots li:nth-child(2) { animation: bpDot2 56s ease-in-out infinite; }
+.blueprint-flow__dots li:nth-child(3) { animation: bpDot3 56s ease-in-out infinite; }
+.blueprint-flow__dots li:nth-child(4) { animation: bpDot4 56s ease-in-out infinite; }
+.blueprint-flow__dots li:nth-child(5) { animation: bpDot5 56s ease-in-out infinite; }
+.blueprint-flow__dots li:nth-child(6) { animation: bpDot6 56s ease-in-out infinite; }
+.blueprint-flow__dots li:nth-child(7) { animation: bpDot7 56s ease-in-out infinite; }
+.blueprint-flow__dots li:nth-child(8) { animation: bpDot8 56s ease-in-out infinite; }
+
+@keyframes bpDotActive {
+  0%, 100% { background: var(--color-stone); transform: scale(1); }
+  50% { background: var(--color-forest); transform: scale(1.35); }
+}
+
+@keyframes bpDot1 { 0%, 11% { background: var(--color-forest); transform: scale(1.2); } 12%, 100% { background: var(--color-stone); transform: scale(1); } }
+@keyframes bpDot2 { 0%, 11% { background: var(--color-stone); } 12%, 23% { background: var(--color-forest); transform: scale(1.2); } 24%, 100% { background: var(--color-stone); transform: scale(1); } }
+@keyframes bpDot3 { 0%, 23% { background: var(--color-stone); } 25%, 36% { background: var(--color-forest); transform: scale(1.2); } 37%, 100% { background: var(--color-stone); transform: scale(1); } }
+@keyframes bpDot4 { 0%, 36% { background: var(--color-stone); } 37.5%, 48% { background: var(--color-forest); transform: scale(1.2); } 49%, 100% { background: var(--color-stone); transform: scale(1); } }
+@keyframes bpDot5 { 0%, 48% { background: var(--color-stone); } 50%, 61% { background: var(--color-forest); transform: scale(1.2); } 62%, 100% { background: var(--color-stone); transform: scale(1); } }
+@keyframes bpDot6 { 0%, 61% { background: var(--color-stone); } 62.5%, 73% { background: var(--color-forest); transform: scale(1.2); } 74%, 100% { background: var(--color-stone); transform: scale(1); } }
+@keyframes bpDot7 { 0%, 73% { background: var(--color-stone); } 75%, 86% { background: var(--color-forest); transform: scale(1.2); } 87%, 100% { background: var(--color-stone); transform: scale(1); } }
+@keyframes bpDot8 { 0%, 86% { background: var(--color-stone); } 87.5%, 98% { background: var(--color-forest); transform: scale(1.2); } 99%, 100% { background: var(--color-stone); transform: scale(1); } }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .blueprint-flow__scene,
+  .blueprint-flow__caption,
+  .blueprint-flow__dots li,
+  .blueprint-flow__flash,
+  .blueprint-flow__arrow-up,
+  .blueprint-flow__map-pin,
+  .blueprint-flow__volunteer-badge,
+  .blueprint-flow__bar,
+  .blueprint-flow__reward-star,
+  .blueprint-flow__ai-check {
+    animation: none !important;
+  }
+
+  .blueprint-flow__scene--1 { opacity: 1; position: relative; pointer-events: auto; margin-bottom: 1rem; border-bottom: 1px solid var(--color-stone); padding-bottom: 1rem; }
+  .blueprint-flow__scene--2,
+  .blueprint-flow__scene--3,
+  .blueprint-flow__scene--4,
+  .blueprint-flow__scene--5,
+  .blueprint-flow__scene--6,
+  .blueprint-flow__scene--7,
+  .blueprint-flow__scene--8 {
+    opacity: 1;
+    position: relative;
+    pointer-events: auto;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-stone);
+    padding-bottom: 1rem;
+  }
+
+  .blueprint-flow__stage {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blueprint-flow__captions {
+    position: static;
+    min-height: auto;
+  }
+
+  .blueprint-flow__caption {
+    position: static;
+    opacity: 1;
+    transform: none;
+    margin-bottom: 0.75rem;
+  }
+
+  .blueprint-flow__dots {
+    display: none;
+  }
+}

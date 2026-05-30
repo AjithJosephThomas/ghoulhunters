@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-AU" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ghoulhunters — Home | Invasive species community watch</title>
+  <meta name="description" content="Ghoulhunters — community invasive species watch. Learn, spot, and report safely. Earn spotter rewards for genuine accurate sightings.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body data-page="home">
+  <div id="site-header"></div>
+
+  <section class="hero-nature anim-hero-in">
+    <div class="container">
+      <span class="badge-eco">Protecting biodiversity</span>
+      <div class="hero-icons" aria-hidden="true">
+        <span class="material-symbols-outlined anim-float">water</span>
+        <span class="material-symbols-outlined anim-float">visibility</span>
+        <span class="material-symbols-outlined anim-float">photo_camera</span>
+      </div>
+      <h1>Ghoulhunters</h1>
+      <p class="hero-subtitle" id="hero-subtitle">Community Invasive Species Watch</p>
+      <p class="tagline">See it. Snap it. Report it. Don&rsquo;t move it.</p>
+      <p class="hero-cta">
+        <a href="#invasive-species" class="btn btn-primary" id="hero-cta-primary">Invasive species</a>
+        <a href="spotter-rewards.html" class="btn btn-outline" id="hero-rewards-link">Spotter rewards</a>
+        <a href="https://www.dpi.qld.gov.au/contact/report-a-biosecurity-pest-or-disease" class="btn btn-river" target="_blank" rel="noopener">Official report</a>
+      </p>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+      <section class="anim-reveal prose-wide" style="margin: 2.5rem auto; text-align: center;">
+        <h2>Protecting our waterways</h2>
+        <p>
+          Invasive species threaten <strong>biodiversity</strong>, river health, and the places we love.
+          Ghoulhunters helps kids, families, and neighbours <strong>learn</strong>, <strong>spot</strong>, and
+          <strong>report</strong> safely — without touching or moving pests.
+          When you tell us what you saw, experts can remove reported pests the right way and help our rivers recover.
+          Active spotters who share <strong>genuine, accurate sightings</strong> can earn
+          <a href="spotter-rewards.html" id="intro-rewards-link">thank-you rewards</a> — mugs, jackets, coupons, and more.
+        </p>
+      </section>
+    </div>
+
+    <section class="anim-reveal section-mist" id="invasive-species" aria-labelledby="invasive-species-heading">
+      <div class="container">
+        <h2 class="text-center" id="invasive-species-heading">Invasive species</h2>
+        <p class="text-center prose-wide invasive-species-intro">
+          Learn to recognise pests in our region. Select a species for photos, facts, and how to report safely.
+        </p>
+        <div id="invasive-species-cards" class="invasive-species-grid">
+          <a href="species.html?species=freshwater-gold-clam" class="card card-interactive species-card">
+            <div class="species-card__thumb">
+              <img src="images/species/freshwater-gold-clam/clam-illustration.svg" alt="Freshwater gold clam shell with golden ridges" width="400" height="250" loading="lazy">
+            </div>
+            <div class="species-card__body">
+              <h3>Freshwater Gold Clam</h3>
+              <p class="species-card__sci"><em>Corbicula fluminea</em></p>
+              <p>What it looks like, where it lives, and why it matters for our ecosystem.</p>
+              <span class="species-card__link">Species guide <span aria-hidden="true">→</span></span>
+            </div>
+          </a>
+        </div>
+        <p class="text-center invasive-species-more">
+          <a href="programs.html" class="btn btn-outline">View all programs</a>
+        </p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="anim-reveal" id="explore-section">
+        <h2 class="text-center">Explore Ghoulhunters</h2>
+        <div id="program-cards" class="anim-stagger"></div>
+      </section>
+
+      <section class="report-box btn-pulse-wrap anim-reveal">
+        <span class="material-symbols-outlined card-icon">phone_in_talk</span>
+        <h2>Report to Biosecurity Queensland</h2>
+        <p id="report-note">Within <strong>24 hours</strong> of a suspected sighting:</p>
+        <p class="report-phone">13 25 23</p>
+        <div class="btn-group" style="justify-content: center;">
+          <a href="https://www.dpi.qld.gov.au/contact/report-a-biosecurity-pest-or-disease" class="btn btn-primary" target="_blank" rel="noopener">
+            Report online
+          </a>
+        </div>
+        <p class="placeholder-note" style="margin-top: 1rem;">
+          Ghoulhunters supports community awareness — always use official reporting.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/config.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>
