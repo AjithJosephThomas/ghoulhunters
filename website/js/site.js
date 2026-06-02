@@ -135,6 +135,10 @@ ${buildHeaderBanner(program)}`;
       <div>
         <h3>${escapeHtml(site.name)}</h3>
         <p>${escapeHtml(site.subtitle)} for ${escapeHtml(site.region)} — <strong>biodiversity</strong> and invasive species education.</p>
+        <figure class="site-footer__qr">
+          <img src="images/qr/ghoulhunters-website-qr.png" alt="QR code linking to the Ghoulhunters website with community invasive species watch information" width="200" height="200" loading="lazy">
+          <figcaption>Scan to visit and share the Ghoulhunters website.</figcaption>
+        </figure>
       </div>
       <div>
         <h3>Official reporting</h3>
