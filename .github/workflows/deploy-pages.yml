@@ -1,5 +1,8 @@
 # Deploy website/ to GitHub Pages
 # Live URL: https://ajithjosephthomas.github.io/ghoulhunters/
+#
+# BEFORE first run: repo Settings → Pages → Source = "GitHub Actions"
+# https://github.com/AjithJosephThomas/ghoulhunters/settings/pages
 
 name: Deploy GitHub Pages
 
@@ -18,23 +21,24 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: website
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

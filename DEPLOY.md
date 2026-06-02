@@ -27,20 +27,44 @@ gh repo create AjithJosephThomas/ghoulhunters --public --source=. --remote=origi
 
 ```bash
 cd /home/joe/projects/ghoulhunters
-git init
+export GIT_AUTHOR_NAME='Ajith J Thomas'
+export GIT_AUTHOR_EMAIL='AjithJosephThomas@users.noreply.github.com'
+export GIT_COMMITTER_NAME='Ajith J Thomas'
+export GIT_COMMITTER_EMAIL='AjithJosephThomas@users.noreply.github.com'
+git init   # skip if already done
 git add .
-git commit -m "Ghoulhunters community watch website and docs"
+git commit -m "Ghoulhunters website — community invasive species watch"
 git branch -M main
-git remote add origin https://github.com/AjithJosephThomas/ghoulhunters.git
+git remote add origin https://github.com/AjithJosephThomas/ghoulhunters.git   # skip if already added
 git push -u origin main
 ```
 
-### 3. Enable GitHub Pages
+Use **`main`** (not `main~`) when pushing.
 
-1. Open https://github.com/AjithJosephThomas/ghoulhunters/settings/pages  
-2. **Build and deployment** → **Source:** GitHub Actions  
-3. After the first push, the **Deploy GitHub Pages** workflow runs automatically  
-4. When it finishes (green), open the site URL above  
+**Authentication:** Run `git push` in your terminal (GitHub must verify you). Install [GitHub CLI](https://cli.github.com/) (`sudo apt install gh`), run `gh auth login`, then `gh auth setup-git`, then push again — or use a Personal Access Token when prompted.
+
+### 3. Enable GitHub Pages (required — do this before re-running Actions)
+
+If the workflow fails with **Get Pages site failed** / **Not Found**, Pages is not turned on yet.
+
+1. Open **[ghoulhunters → Settings → Pages](https://github.com/AjithJosephThomas/ghoulhunters/settings/pages)**  
+2. Under **Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from a branch”)  
+3. Save — you do not need to pick a workflow template; ours is already in `.github/workflows/deploy-pages.yml`  
+4. Go to **Actions** → **Deploy GitHub Pages** → **Re-run all jobs** (or push any small commit)
+
+When the run is green, the site is at https://ajithjosephthomas.github.io/ghoulhunters/
+
+**Order matters:** enable Pages (step 3) → then run the deploy workflow. Pushing code alone does not enable Pages.
+
+---
+
+## Troubleshooting
+
+| Error | Fix |
+|-------|-----|
+| `Get Pages site failed` / `Not Found` on configure-pages or deploy | Complete **step 3** above (Source = GitHub Actions) |
+| Workflow does not start | Push to `main` and check **Actions** tab is enabled for the repo |
+| Site 404 after green deploy | Wait 2–5 minutes; hard-refresh; confirm URL includes `/ghoulhunters/` |
 
 ---
 

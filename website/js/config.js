@@ -93,7 +93,7 @@ window.GHOULHUNTERS_CONFIG = {
       speciesContent: 'content/species/freshwater-gold-clam.html',
       watchContent: 'content/watch/freshwater-gold-clam.html',
       imagesDir: 'images/species/freshwater-gold-clam',
-      thumbnail: 'clam-illustration.svg',
+      thumbnail: 'bq-riverbank.jpg',
       heroStory: 'partials/hero-story.html',
       showInNav: true,
       legacyUrls: ['asian-gold-clam.html', 'eradication-project.html'],
