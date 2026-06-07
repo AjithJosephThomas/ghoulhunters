@@ -1,15 +1,25 @@
-# Ghoulhunters website
+# Nature Ninjas website
 
-**Community Invasive Species Watch** — static site for species guides and watch programs.
+**React + Material UI** site for biodiversity education, species guides, and community watch programs.
 
 ## Run locally
 
 ```bash
 cd website
-python3 -m http.server 8080
+npm install
+npm run dev
 ```
 
-Open http://localhost:8080 (required for config-driven pages and content loading).
+Open http://localhost:5173/ghoulhunters/ (Vite dev server uses the GitHub Pages base path).
+
+## Build
+
+```bash
+npm run build
+npm run preview
+```
+
+Production output is in `dist/` — deployed automatically via GitHub Actions.
 
 ## GitHub Pages (live site)
 
@@ -17,61 +27,25 @@ Repository: [github.com/AjithJosephThomas/ghoulhunters](https://github.com/Ajith
 
 **Public URL:** https://ajithjosephthomas.github.io/ghoulhunters/
 
-First-time deploy steps are in **[DEPLOY.md](../DEPLOY.md)** at the repo root (create repo, push, enable Pages → GitHub Actions).
-
-## Architecture (scalable)
+## Stack
 
 | Piece | Purpose |
 |-------|---------|
-| `js/config.js` | **Single source of truth** — site settings, biosecurity defaults, all programs |
-| `species.html?species={id}` | Generic species guide shell |
-| `watch.html?program={id}` | Generic watch program shell |
-| `content/species/{id}.html` | Species-specific body HTML |
-| `content/watch/{id}.html` | Watch program body HTML |
-| `images/species/{id}/` | Photos for that species |
-
-Shared pages (`program.html`, `blueprint.html`, `who-we-are.html`) apply to all programs.
+| React 19 + Vite | UI framework and build |
+| Material UI 6 | Professional components and theming |
+| Framer Motion | Scroll reveals, hero animations, blueprint stepper |
+| React Router | Client-side routing with legacy URL redirects |
+| `src/config.ts` | Single source of truth for programs and site copy |
 
 ## Add a new invasive species program
 
-1. **Copy the example** in `js/config.js` — add a new object to `programs` with `status: "active"`.
-2. **Create content files:**
-   - `content/species/your-species-id.html`
-   - `content/watch/your-species-id.html`
-3. **Add images** under `images/species/your-species-id/`.
-4. Set `showInNav: true` when ready to appear in the menu.
+1. Add a program object to `src/config.ts`.
+2. Create content components in `src/content/`.
+3. Wire the species ID in `SpeciesPage.tsx` and `WatchPage.tsx` content maps.
+4. Add images under `public/images/species/{id}/`.
 
-No new HTML pages are required — `species.html` and `watch.html` load automatically.
+## Legacy static site
 
-Optional: add `legacyUrls: ['old-page.html']` and create a redirect file pointing to the new URLs.
-
-## URLs
-
-| URL | Content |
-|-----|---------|
-| `species.html?species=freshwater-gold-clam` | Freshwater gold clam guide |
-| `watch.html?program=freshwater-gold-clam` | Gold Clam Watch project |
-| `programs.html` | List of all programs |
-| `asian-gold-clam.html` | Redirects to species guide (legacy) |
-| `eradication-project.html` | Redirects to watch program (legacy) |
-
-## Edit content
-
-- **Program metadata** — `js/config.js`
-- **Species facts & photos** — `content/species/{id}.html`
-- **Watch project copy** — `content/watch/{id}.html`
-- **Team** — `who-we-are.html`
-
-## Pages
-
-| File | Role |
-|------|------|
-| `index.html` | Home — program cards from config |
-| `programs.html` | All active / coming-soon programs |
-| `species.html` | Dynamic species guide |
-| `watch.html` | Dynamic watch program |
-| `program.html` | How Ghoulhunters works (shared) |
-| `blueprint.html` | Diagrams (shared) |
-| `who-we-are.html` | Team |
+The previous HTML/CSS version is archived in `website-legacy/` at the repo root.
 
 This site supports community awareness — not a government service. Always use official Biosecurity Queensland reporting (**13 25 23**).

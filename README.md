@@ -20,7 +20,11 @@
 
 ## Website (built)
 
-The live site lives in **`website/`** — hosted on GitHub Pages under [AjithJosephThomas/ghoulhunters](https://github.com/AjithJosephThomas/ghoulhunters).
+The live site is a **React + Material UI** app in **`website/`** — hosted on GitHub Pages under [AjithJosephThomas/ghoulhunters](https://github.com/AjithJosephThomas/ghoulhunters).
+
+```bash
+cd website && npm install && npm run dev
+```
 
 | | |
 |---|---|

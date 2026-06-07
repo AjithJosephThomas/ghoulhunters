@@ -1,0 +1,897 @@
+/* Nature Ninjas — biodiversity theme (PRP v2.2) */
+
+:root {
+  --color-forest: #2D5016;
+  --color-canopy: #4A7C3F;
+  --color-moss: #7CB342;
+  --color-leaf: #A8D5A2;
+  --color-river: #1A6B7C;
+  --color-river-light: #4A9EAE;
+  --color-sky: #B8D4E8;
+  --color-mist: #E8F4F0;
+  --color-earth: #6B5344;
+  --color-sand: #F7F3E8;
+  --color-stone: #E5E0D5;
+  --color-sunrise: #E8B84A;
+  --color-invasive-alert: #B71C1C;
+  --color-text: #1A2E1A;
+  --color-text-muted: #4A5D4A;
+  --color-text-on-dark: #ffffff;
+  --color-primary: var(--color-forest);
+  --color-secondary: var(--color-canopy);
+  --color-accent: var(--color-moss);
+  --color-surface: var(--color-sand);
+  --color-background: var(--color-mist);
+  --color-warning: var(--color-invasive-alert);
+  --font-main: 'Roboto', system-ui, sans-serif;
+  --font-display: 'Nunito', 'Roboto', sans-serif;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --shadow-card: 0 4px 24px rgba(45, 80, 22, 0.1);
+  --shadow-card-hover: 0 12px 36px rgba(26, 107, 124, 0.15);
+  --shadow-river-glow: 0 0 40px rgba(74, 158, 174, 0.25);
+  --header-height: 64px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-sand);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--color-river);
+  font-weight: 500;
+}
+
+a:hover {
+  color: var(--color-forest);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.25;
+  color: var(--color-forest);
+}
+
+h1 { font-size: clamp(1.75rem, 4vw, 2.75rem); }
+h2 { font-size: clamp(1.35rem, 3vw, 1.85rem); margin-top: 2rem; }
+h3 { font-size: 1.15rem; }
+
+.container {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+main {
+  min-height: 60vh;
+  padding-bottom: 3rem;
+}
+
+/* —— Header —— */
+.site-header {
+  background: var(--color-forest);
+  color: var(--color-text-on-dark);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-height);
+  gap: 1rem;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-on-dark);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+.site-logo .material-symbols-outlined {
+  font-size: 1.75rem;
+  color: var(--color-leaf);
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  position: relative;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.site-nav a.active::after {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 2px;
+  height: 2px;
+  background: var(--color-moss);
+  border-radius: 2px;
+}
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.nav-toggle .material-symbols-outlined {
+  font-size: 1.5rem;
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .site-nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 1rem;
+  }
+
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  .site-header__inner {
+    flex-wrap: wrap;
+  }
+}
+
+/* —— Global alert —— */
+.alert-warning {
+  background: #fff5f5;
+  border-left: 4px solid var(--color-invasive-alert);
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.alert-warning strong {
+  color: var(--color-invasive-alert);
+}
+
+.alert-info {
+  background: var(--color-mist);
+  border-left: 4px solid var(--color-river);
+  padding: 1rem 1.25rem;
+  border-radius: 0 var(--radius-card) var(--radius-card) 0;
+  margin: 1.5rem 0;
+}
+
+/* —— Hero —— */
+.hero-nature {
+  background: linear-gradient(
+    165deg,
+    var(--color-sky) 0%,
+    var(--color-river-light) 45%,
+    var(--color-forest) 100%
+  );
+  background-size: 200% 200%;
+  color: var(--color-text-on-dark);
+  padding: 2.5rem 0 3.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-nature h1,
+.hero-nature .hero-subtitle {
+  color: var(--color-text-on-dark);
+}
+
+.hero-nature .tagline {
+  font-size: 1.2rem;
+  font-style: italic;
+  opacity: 0.95;
+  margin: 0.5rem 0 1.5rem;
+}
+
+.hero-nature .hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.hero-nature .btn-outline {
+  color: var(--color-text-on-dark);
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-nature .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+/* —— Spotter rewards (home) —— */
+.spotter-rewards {
+  padding: 0 0 2.5rem;
+}
+
+.spotter-rewards--page {
+  padding-top: 0;
+}
+
+.spotter-rewards--page .spotter-rewards__card {
+  max-width: 48rem;
+}
+
+.spotter-rewards__actions {
+  margin-top: 2rem;
+}
+
+.spotter-rewards__actions .btn-group,
+.spotter-rewards__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.spotter-rewards__card {
+  max-width: 42rem;
+  margin: 0 auto;
+  text-align: center;
+  background: linear-gradient(145deg, #fff 0%, var(--color-mist) 55%, #fff9e8 100%);
+  border: 2px solid var(--color-sunrise);
+  border-radius: var(--radius-card);
+  padding: 2rem 1.75rem;
+  box-shadow: var(--shadow-card), 0 0 0 4px rgba(232, 184, 74, 0.2);
+}
+
+.spotter-rewards__badge {
+  margin-bottom: 0.75rem;
+}
+
+.spotter-rewards h2 {
+  margin-top: 0;
+}
+
+.spotter-rewards__lead {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-river);
+  margin: 0 0 1rem;
+}
+
+.spotter-rewards__body {
+  margin: 0 auto 1.5rem;
+  color: var(--color-text-muted);
+}
+
+.spotter-rewards__prizes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+  gap: 1rem;
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+
+.spotter-rewards__prizes li {
+  background: #fff;
+  border: 2px solid var(--color-leaf);
+  border-radius: var(--radius-card);
+  padding: 1rem 0.75rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  color: var(--color-forest);
+  box-shadow: var(--shadow-card);
+}
+
+.spotter-rewards__prizes .material-symbols-outlined {
+  display: block;
+  font-size: 2.25rem;
+  color: var(--color-sunrise);
+  margin: 0 auto 0.35rem;
+}
+
+.spotter-rewards__eligibility {
+  text-align: left;
+  background: rgba(45, 80, 22, 0.06);
+  border-left: 4px solid var(--color-forest);
+  border-radius: 0 var(--radius-card) var(--radius-card) 0;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.spotter-rewards__eligibility h2,
+.spotter-rewards__eligibility h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.spotter-rewards__eligibility p {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.spotter-rewards__note {
+  margin: 0;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.prose-wide a {
+  font-weight: 700;
+}
+
+.hero-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-icons .material-symbols-outlined {
+  font-size: 2.5rem;
+  color: var(--color-leaf);
+}
+
+.page-hero {
+  background: linear-gradient(135deg, var(--color-mist), var(--color-stone));
+  padding: 2.5rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid var(--color-moss);
+}
+
+.page-hero h1 {
+  margin: 0 0 0.5rem;
+}
+
+.page-hero .subtitle {
+  color: var(--color-text-muted);
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+/* —— Sections —— */
+.section-mist {
+  background: var(--color-mist);
+  padding: 2.5rem 0;
+  margin: 2rem 0;
+}
+
+.section-sand {
+  background: var(--color-sand);
+  padding: 2.5rem 0;
+}
+
+/* —— Cards —— */
+.card {
+  background: #fff;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+  border: 1px solid var(--color-stone);
+}
+
+.card-interactive {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.card-interactive:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.card-interactive h3 {
+  margin-top: 0;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  color: var(--color-river);
+  margin-bottom: 0.5rem;
+}
+
+/* —— Invasive species cards (home) —— */
+.species-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.species-card__thumb {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--color-mist);
+  border-bottom: 1px solid var(--color-stone);
+}
+
+.species-card__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.species-card__thumb--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+}
+
+.species-card__thumb--placeholder .material-symbols-outlined {
+  font-size: 3rem;
+  color: var(--color-river);
+}
+
+.species-card__body {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.species-card__body h3 {
+  margin: 0 0 0.35rem;
+}
+
+.species-card__sci {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin: 0 0 0.75rem;
+}
+
+.species-card__link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-river);
+}
+
+.species-card:hover .species-card__link {
+  color: var(--color-forest);
+}
+
+.invasive-species-intro {
+  margin: 0 auto 1.75rem;
+  max-width: 42rem;
+}
+
+.invasive-species-more {
+  margin-top: 1.25rem;
+}
+
+.invasive-species-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#invasive-species .section-mist,
+#invasive-species.section-mist {
+  margin: 0;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+/* —— Buttons —— */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary {
+  background: var(--color-forest);
+  color: var(--color-text-on-dark);
+}
+
+.btn-primary:hover {
+  background: var(--color-canopy);
+  color: #fff;
+  transform: scale(1.02);
+}
+
+.btn-river {
+  background: var(--color-river);
+  color: var(--color-text-on-dark);
+}
+
+.btn-river:hover {
+  background: var(--color-river-light);
+  color: #fff;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-forest);
+  border: 2px solid var(--color-canopy);
+}
+
+.btn-outline:hover {
+  background: var(--color-mist);
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* —— Callouts —— */
+.callout-biodiversity {
+  border-left: 4px solid var(--color-river);
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border-radius: 0 var(--radius-card) var(--radius-card) 0;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-card);
+}
+
+.callout-invasive {
+  border-left: 4px solid var(--color-earth);
+  padding: 1rem 1.25rem;
+  background: #faf8f5;
+  border-radius: 0 var(--radius-card) var(--radius-card) 0;
+  margin: 1.5rem 0;
+}
+
+/* —— Badges —— */
+.badge-eco {
+  display: inline-block;
+  background: var(--color-sunrise);
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 1rem;
+}
+
+/* —— Report box —— */
+.report-box {
+  background: linear-gradient(135deg, #fff, var(--color-mist));
+  border: 2px solid var(--color-river-light);
+  border-radius: var(--radius-card);
+  padding: 1.75rem;
+  text-align: center;
+  box-shadow: var(--shadow-river-glow);
+  margin: 2rem 0;
+}
+
+.report-box h2 {
+  margin-top: 0;
+  color: var(--color-river);
+}
+
+.report-phone {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-forest);
+  margin: 0.5rem 0;
+}
+
+/* —— Do / Don't —— */
+.do-dont {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.do-dont .do {
+  border-top: 4px solid var(--color-moss);
+}
+
+.do-dont .dont {
+  border-top: 4px solid var(--color-invasive-alert);
+}
+
+.do-dont ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+/* —— Timeline —— */
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  border-left: 3px solid var(--color-moss);
+  padding-left: 1.5rem;
+}
+
+.timeline li {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.timeline li::before {
+  content: '';
+  position: absolute;
+  left: -1.85rem;
+  top: 0.35rem;
+  width: 12px;
+  height: 12px;
+  background: var(--color-river);
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+/* —— Team —— */
+.team-card {
+  text-align: center;
+}
+
+.team-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-moss), var(--color-river-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* —— Species visual —— */
+.species-visual {
+  background: var(--color-mist);
+  border-radius: var(--radius-card);
+  padding: 2rem;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.clam-icon-large {
+  font-size: 4rem;
+  color: var(--color-earth);
+}
+
+/* —— Diagrams —— */
+.diagram-wrap {
+  background: #fff;
+  border-radius: var(--radius-card);
+  padding: 1rem;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-stone);
+}
+
+.diagram-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.photo-grid figure {
+  margin: 0;
+  background: #fff;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  border: 1px solid var(--color-stone);
+  box-shadow: var(--shadow-card);
+}
+
+.photo-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.photo-grid figcaption {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  padding: 0.65rem 0.75rem;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.photo-grid .rights {
+  display: block;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  opacity: 0.85;
+}
+
+.card--muted {
+  opacity: 0.85;
+  border-style: dashed;
+}
+
+.program-card {
+  padding: 1.25rem;
+}
+
+.program-card--with-thumb {
+  padding: 0;
+  overflow: hidden;
+}
+
+.program-card__body {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.program-card__thumb img {
+  object-fit: contain;
+  background: var(--color-mist);
+}
+
+.blueprint-proposed .badge-eco {
+  margin-bottom: 0.75rem;
+}
+
+.site-nav__sub a {
+  font-size: 0.95rem;
+  padding-left: 0.25rem;
+}
+
+.diagram-caption {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+/* —— Footer —— */
+.site-footer {
+  background: var(--color-earth);
+  color: rgba(255, 255, 255, 0.92);
+  padding: 2.5rem 0 2rem;
+  margin-top: 3rem;
+  font-size: 0.95rem;
+}
+
+.site-footer a {
+  color: var(--color-leaf);
+}
+
+.site-footer h3 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-top: 0;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.site-footer__qr {
+  margin: 1rem 0 0;
+  max-width: 220px;
+}
+
+.site-footer__qr img {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+  background: #fff;
+  padding: 0.4rem;
+}
+
+.site-footer__qr figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.site-footer__bottom {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+/* —— Utility —— */
+.text-center { text-align: center; }
+.mt-2 { margin-top: 2rem; }
+.prose { max-width: 65ch; }
+.prose-wide { max-width: 75ch; }
+
+details pre {
+  background: var(--color-stone);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+
+.placeholder-note {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}

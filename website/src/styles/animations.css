@@ -1,0 +1,143 @@
+@keyframes ripple-burst-0 {
+  0% {
+    transform: translate(-50%, -50%) scale(0.85, 0.32);
+    opacity: 0.28;
+  }
+  16% {
+    transform: translate(-50%, -50%) scale(2.05, 0.72);
+    opacity: 0;
+  }
+  17%,
+  100% {
+    transform: translate(-50%, -50%) scale(0.85, 0.32);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple-burst-1 {
+  0%,
+  6% {
+    transform: translate(-50%, -50%) scale(0.85, 0.32);
+    opacity: 0;
+  }
+  7% {
+    opacity: 0.22;
+  }
+  23% {
+    transform: translate(-50%, -50%) scale(2.05, 0.72);
+    opacity: 0;
+  }
+  24%,
+  100% {
+    transform: translate(-50%, -50%) scale(0.85, 0.32);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple-burst-2 {
+  0%,
+  12% {
+    transform: translate(-50%, -50%) scale(0.85, 0.32);
+    opacity: 0;
+  }
+  13% {
+    opacity: 0.16;
+  }
+  29% {
+    transform: translate(-50%, -50%) scale(2.05, 0.72);
+    opacity: 0;
+  }
+  30%,
+  100% {
+    transform: translate(-50%, -50%) scale(0.85, 0.32);
+    opacity: 0;
+  }
+}
+
+@keyframes float-gentle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes swim-across {
+  0% {
+    transform: translateX(-120%) translateY(0);
+  }
+  50% {
+    transform: translateX(50vw) translateY(-6px);
+  }
+  100% {
+    transform: translateX(120vw) translateY(0);
+  }
+}
+
+@keyframes shimmer-slide {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes dot-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes river-flow {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -40;
+  }
+}
+
+.ripple-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(61, 154, 173, 0.45);
+}
+
+.ripple-ring--river {
+  box-shadow: none;
+}
+
+.ripple-ring--layer-0 {
+  border-color: rgba(129, 212, 250, 0.3);
+  animation: ripple-burst-0 var(--ripple-cycle, 5s) ease-out infinite;
+}
+
+.ripple-ring--layer-1 {
+  border-color: rgba(129, 212, 250, 0.22);
+  animation: ripple-burst-1 var(--ripple-cycle, 5s) ease-out infinite;
+}
+
+.ripple-ring--layer-2 {
+  border-color: rgba(129, 212, 250, 0.15);
+  animation: ripple-burst-2 var(--ripple-cycle, 5s) ease-out infinite;
+}
+
+.float-gentle {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ripple-ring,
+  .float-gentle {
+    animation: none;
+  }
+}

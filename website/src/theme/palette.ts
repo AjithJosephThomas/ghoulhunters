@@ -1,0 +1,92 @@
+/**
+ * Nature Ninjas — NatGeo Kids–inspired palette
+ * High contrast, warm accents, white backgrounds for readability.
+ */
+export const palette = {
+  white: '#FFFFFF',
+  offWhite: '#FAFAFA',
+  grey: '#F0F0F0',
+  greyMid: '#E0E0E0',
+  yellow: '#FFCC00',
+  yellowDark: '#E6B800',
+  yellowLight: '#FFF3B0',
+  green: '#2E7D32',
+  greenLight: '#4CAF50',
+  greenPale: '#E8F5E9',
+  orange: '#F57C00',
+  orangePale: '#FFF3E0',
+  purple: '#7B1FA2',
+  purplePale: '#F3E5F5',
+  ink: '#1A1A1A',
+  stone: '#5C5C5C',
+  stoneLight: '#757575',
+  alert: '#D32F2F',
+  alertPale: '#FFEBEE',
+  footer: '#2D2D2D',
+  footerText: '#E8E8E8',
+  /** Legacy aliases — mapped to warm palette for existing components */
+  cloud: '#FAFAFA',
+  sky: '#F0F0F0',
+  river: '#2E7D32',
+  riverLight: '#4CAF50',
+  riverDark: '#1B5E20',
+  forest: '#2E7D32',
+  forestLight: '#66BB6A',
+  eucalyptus: '#4CAF50',
+  sun: '#FFCC00',
+  ochre: '#F57C00',
+  ochreLight: '#FFB74D',
+  earth: '#8D6E63',
+  dotWhite: '#FFFFFF',
+  dotOchre: '#FFCC00',
+  dotRust: '#F57C00',
+  dotCharcoal: '#2D2D2D',
+} as const;
+
+export const colors = {
+  deep: palette.footer,
+  deepDark: palette.ink,
+  ocean: palette.green,
+  oceanDark: palette.riverDark,
+  river: palette.greenLight,
+  aqua: palette.greenLight,
+  aquaLight: palette.greenPale,
+  sky: palette.grey,
+  skyLight: palette.offWhite,
+  foam: palette.offWhite,
+  wave: palette.grey,
+  mist: palette.white,
+  sand: palette.yellow,
+  kelp: palette.green,
+  kelpLight: palette.greenLight,
+  paper: palette.white,
+  ink: palette.ink,
+  inkMuted: palette.stone,
+  invasive: palette.alert,
+  ochre: palette.orange,
+} as const;
+
+export const gradients = {
+  hero: palette.offWhite,
+  header: palette.white,
+  page: palette.white,
+  footer: palette.footer,
+  report: palette.yellowLight,
+  rewards: palette.yellowLight,
+  card: 'none',
+  shimmer: 'none',
+  riverbank: 'none',
+  ochreBand: palette.yellow,
+  title: 'none',
+  story: [palette.yellow, palette.greenPale, palette.orangePale, palette.purplePale],
+} as const;
+
+/** NatGeo-style category tile colours for icon badges & cards */
+export const categoryColors = [
+  { bg: palette.yellow, fg: palette.ink },
+  { bg: palette.green, fg: palette.white },
+  { bg: palette.orange, fg: palette.white },
+  { bg: palette.purple, fg: palette.white },
+  { bg: '#1976D2', fg: palette.white },
+  { bg: '#C2185B', fg: palette.white },
+] as const;

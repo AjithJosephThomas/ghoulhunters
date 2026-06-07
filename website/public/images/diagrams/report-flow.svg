@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" role="img" aria-label="Report flow six steps">
+  <style>
+    text { font-family: Nunito, Roboto, sans-serif; font-size: 14px; fill: #1A2E1A; }
+    .step { fill: #F7F3E8; stroke: #4A7C3F; stroke-width: 2; }
+    .step-warn { fill: #fff5f5; stroke: #B71C1C; }
+    .step-off { fill: #E8F4F0; stroke: #1A6B7C; stroke-width: 2; }
+    .num { font-weight: bold; fill: #fff; font-size: 16px; }
+    .circle { fill: #2D5016; }
+    .title { font-size: 17px; font-weight: bold; fill: #2D5016; text-anchor: middle; }
+  </style>
+  <text x="200" y="28" class="title">What to do when you see a clam</text>
+  <g transform="translate(40, 50)">
+    <circle class="circle" cx="16" cy="16" r="16"/><text class="num" x="16" y="21" text-anchor="middle">1</text>
+    <rect class="step" x="44" y="0" width="300" height="36" rx="8"/>
+    <text x="194" y="23" text-anchor="middle">See pest at the river</text>
+  </g>
+  <g transform="translate(40, 100)">
+    <circle class="circle" cx="16" cy="16" r="16"/><text class="num" x="16" y="21" text-anchor="middle">2</text>
+    <rect class="step-warn" x="44" y="0" width="300" height="36" rx="8"/>
+    <text x="194" y="23" text-anchor="middle" font-weight="bold">Do NOT move it</text>
+  </g>
+  <g transform="translate(40, 150)">
+    <circle class="circle" cx="16" cy="16" r="16"/><text class="num" x="16" y="21" text-anchor="middle">3</text>
+    <rect class="step" x="44" y="0" width="300" height="36" rx="8"/>
+    <text x="194" y="23" text-anchor="middle">Take a photo (if safe)</text>
+  </g>
+  <g transform="translate(40, 200)">
+    <circle class="circle" cx="16" cy="16" r="16"/><text class="num" x="16" y="21" text-anchor="middle">4</text>
+    <rect class="step" x="44" y="0" width="300" height="36" rx="8"/>
+    <text x="194" y="23" text-anchor="middle">Visit Nature Ninjas website</text>
+  </g>
+  <g transform="translate(40, 250)">
+    <circle class="circle" cx="16" cy="16" r="16"/><text class="num" x="16" y="21" text-anchor="middle">5</text>
+    <rect class="step" x="44" y="0" width="300" height="36" rx="8"/>
+    <text x="194" y="23" text-anchor="middle">Report form (Phase 2)</text>
+  </g>
+  <g transform="translate(40, 300)">
+    <circle class="circle" cx="16" cy="16" r="16"/><text class="num" x="16" y="21" text-anchor="middle">6</text>
+    <rect class="step-off" x="44" y="0" width="300" height="48" rx="8"/>
+    <text x="194" y="20" text-anchor="middle" font-weight="bold">Report Biosecurity QLD</text>
+    <text x="194" y="38" text-anchor="middle">13 25 23 ù within 24 hours</text>
+  </g>
+  <text x="200" y="400" text-anchor="middle" font-size="12" fill="#4A5D4A">Protecting Brisbane River biodiversity</text>
+</svg>

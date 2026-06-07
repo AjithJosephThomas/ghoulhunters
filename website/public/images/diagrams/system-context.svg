@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 220" role="img" aria-label="Nature Ninjas system overview">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#2D5016"/>
+    </marker>
+  </defs>
+  <style>
+    .box { fill: #E8F4F0; stroke: #2D5016; stroke-width: 2; rx: 8; }
+    .box-visitor { fill: #F7F3E8; stroke: #6B5344; }
+    .box-water { fill: #B8D4E8; stroke: #1A6B7C; }
+    .box-official { fill: #7CB342; stroke: #2D5016; }
+    text { font-family: Nunito, Roboto, sans-serif; font-size: 13px; fill: #1A2E1A; }
+    .label { font-weight: bold; font-size: 14px; }
+  </style>
+  <text x="390" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1A6B7C">How Nature Ninjas connects the community</text>
+  <rect class="box-visitor" x="10" y="70" width="110" height="70"/>
+  <text x="65" y="100" text-anchor="middle" class="label">RIVER</text>
+  <text x="65" y="118" text-anchor="middle">VISITOR</text>
+  <text x="65" y="134" text-anchor="middle" font-size="11">sees clam</text>
+  <rect class="box" x="140" y="70" width="100" height="70"/>
+  <text x="190" y="100" text-anchor="middle" class="label">POSTER</text>
+  <text x="190" y="118" text-anchor="middle">QR code</text>
+  <rect class="box-water" x="260" y="70" width="120" height="70"/>
+  <text x="320" y="100" text-anchor="middle" class="label">WEBSITE</text>
+  <text x="320" y="118" text-anchor="middle">Learn &amp; guide</text>
+  <rect class="box" x="400" y="70" width="120" height="70"/>
+  <text x="460" y="90" text-anchor="middle" class="label">REPORT</text>
+  <text x="460" y="108" text-anchor="middle">FORM</text>
+  <text x="460" y="124" text-anchor="middle" font-size="11">(Phase 2)</text>
+  <rect class="box-official" x="540" y="70" width="150" height="70"/>
+  <text x="615" y="95" text-anchor="middle" class="label">BIOSECURITY</text>
+  <text x="615" y="113" text-anchor="middle">QUEENSLAND</text>
+  <text x="615" y="131" text-anchor="middle" font-weight="bold">13 25 23</text>
+  <rect class="box" x="710" y="70" width="60" height="70"/>
+  <text x="740" y="105" text-anchor="middle" class="label">RIVER</text>
+  <text x="740" y="123" text-anchor="middle">HEALTH</text>
+  <line x1="120" y1="105" x2="138" y2="105" stroke="#2D5016" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="240" y1="105" x2="258" y2="105" stroke="#2D5016" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="380" y1="105" x2="398" y2="105" stroke="#2D5016" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="520" y1="105" x2="538" y2="105" stroke="#2D5016" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="690" y1="105" x2="708" y2="105" stroke="#2D5016" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="390" y="195" text-anchor="middle" font-size="11" fill="#4A5D4A">Nature Ninjas educates and guides — official reports go to Biosecurity Queensland</text>
+</svg>
