@@ -1,0 +1,15 @@
+export const colors = {
+  white: '#FFFFFF',
+  offWhite: '#FAFAFA',
+  grey: '#F0F0F0',
+  yellow: '#FFCC00',
+  yellowDark: '#E6B800',
+  yellowLight: '#FFF3B0',
+  green: '#2E7D32',
+  greenPale: '#E8F5E9',
+  orange: '#F57C00',
+  ink: '#1A1A1A',
+  stone: '#5C5C5C',
+  alert: '#D32F2F',
+  alertPale: '#FFEBEE',
+} as const;
