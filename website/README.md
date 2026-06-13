@@ -44,8 +44,4 @@ Repository: [github.com/AjithJosephThomas/ghoulhunters](https://github.com/Ajith
 3. Wire the species ID in `SpeciesPage.tsx` and `WatchPage.tsx` content maps.
 4. Add images under `public/images/species/{id}/`.
 
-## Legacy static site
-
-The previous HTML/CSS version is archived in `website-legacy/` at the repo root.
-
 This site supports community awareness — not a government service. Always use official Biosecurity Queensland reporting (**13 25 23**).

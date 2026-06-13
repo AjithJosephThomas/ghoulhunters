@@ -1,6 +1,6 @@
 {
   "name": "bio-buddies-mobile",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "main": "index.ts",
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.2.0",
@@ -16,14 +16,32 @@
     "react-native-screens": "~4.16.0"
   },
   "devDependencies": {
+    "@expo/ngrok": "^4.1.0",
     "@types/react": "~19.1.10",
+    "eas-cli": "^20.1.0",
     "typescript": "~5.9.2"
   },
   "scripts": {
-    "start": "expo start --clear",
+    "prestart": "fuser -k 8081/tcp 2>/dev/null || true",
+    "start": "expo start --clear --lan --port 8081",
+    "start:tunnel": "expo start --clear --tunnel --port 8081",
+    "start:fresh": "rm -rf .expo node_modules/.cache && expo start --clear --lan --port 8081",
     "android": "expo start --android --clear",
     "ios": "expo start --ios --clear",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "prebuild": "expo prebuild",
+    "build:android": "eas build --platform android --profile preview --non-interactive",
+    "build:ios": "eas build --platform ios --profile preview --non-interactive",
+    "build:all": "eas build --platform all --profile preview --non-interactive",
+    "build:android:local": "bash scripts/build-android-apk.sh",
+    "build:android:local:debug": "expo prebuild --platform android --clean && cd android && ./gradlew assembleDebug",
+    "build:ios:cloud": "eas build --platform ios --profile preview",
+    "build:android:cloud": "eas build --platform android --profile preview",
+    "build:cloud": "eas build --platform all --profile preview",
+    "setup:phone": "bash scripts/setup-phone-dev.sh",
+    "setup:eas": "bash scripts/setup-eas-builds.sh",
+    "build:ios:eas": "bash scripts/build-ios-eas.sh",
+    "phone:usb": "bash scripts/phone-usb.sh"
   },
   "private": true
 }

@@ -10,6 +10,7 @@ export function ReportBox() {
   return (
     <Reveal>
       <Paper
+        id="report-biosecurity"
         elevation={0}
         sx={{
           p: { xs: 3, md: 4 },
@@ -19,6 +20,7 @@ export function ReportBox() {
           borderRadius: 4,
           my: 4,
           boxShadow: `0 8px 32px rgba(0,0,0,0.08)`,
+          scrollMarginTop: 88,
         }}
       >
         <Box
@@ -39,6 +41,10 @@ export function ReportBox() {
         </Box>
         <Typography variant="h5" sx={{ fontWeight: 800, mb: 1, color: palette.ink, fontFamily: '"Nunito", sans-serif' }}>
           Report to {biosecurity.authority}
+        </Typography>
+        <Typography sx={{ mb: 2, color: palette.stone, fontSize: '1rem', maxWidth: 560, mx: 'auto' }}>
+          Reporting to {biosecurity.authority} is the <strong>official</strong> way to report suspected pests.
+          Use the details below for reference, or if you prefer not to use the {site.name} app.
         </Typography>
         <Typography sx={{ mb: 2, color: palette.stone, fontSize: '1rem' }}>
           Within <strong>{biosecurity.reportHours} hours</strong> of a suspected sighting:
@@ -67,7 +73,7 @@ export function ReportBox() {
           Report online
         </Button>
         <Typography variant="body2" sx={{ mt: 2, color: palette.stone }}>
-          {site.name} supports community awareness — always use official reporting.
+          {site.name} supports community awareness — {biosecurity.authority} remains the official authority.
         </Typography>
       </Paper>
     </Reveal>

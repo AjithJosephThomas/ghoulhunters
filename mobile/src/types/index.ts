@@ -14,8 +14,9 @@ export interface ReportPayload {
   userId: string;
   tag: ReportTag;
   remarks?: string;
-  latitude: number;
-  longitude: number;
+  latitude?: number | null;
+  longitude?: number | null;
+  locationSource: 'gps' | 'manual';
   timestamp: string;
   imageBase64: string;
 }

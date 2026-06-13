@@ -3,7 +3,7 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { AppMenuButton } from './src/components/AppMenuButton';
 import type { RootStackParamList } from './src/navigation/types';
 import { RegisterScreen } from './src/screens/RegisterScreen';
@@ -35,10 +35,12 @@ export default function App() {
 
   if (booting) {
     return (
-      <View style={styles.boot}>
-        <ActivityIndicator size="large" color={colors.green} />
-        <StatusBar style="dark" />
-      </View>
+      <SafeAreaProvider>
+        <SafeAreaView style={styles.boot}>
+          <ActivityIndicator size="large" color={colors.green} />
+          <StatusBar style="dark" />
+        </SafeAreaView>
+      </SafeAreaProvider>
     );
   }
 

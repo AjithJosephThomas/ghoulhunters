@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
+import { useResponsiveLayout } from '../theme/layout';
 import { colors } from '../theme/colors';
 
 interface InlineCameraProps {
@@ -20,10 +21,13 @@ export function InlineCamera({ photoUri, onCapture, onRetake }: InlineCameraProp
   const cameraRef = useRef<CameraView>(null);
   const [permission, requestPermission] = useCameraPermissions();
   const [capturing, setCapturing] = useState(false);
+  const { cameraHeight } = useResponsiveLayout();
+
+  const mediaStyle = { width: '100%' as const, height: cameraHeight };
 
   if (!permission) {
     return (
-      <View style={styles.centered}>
+      <View style={[styles.centered, mediaStyle]}>
         <ActivityIndicator color={colors.green} />
       </View>
     );
@@ -45,7 +49,11 @@ export function InlineCamera({ photoUri, onCapture, onRetake }: InlineCameraProp
   if (photoUri) {
     return (
       <View style={styles.previewWrap}>
-        <Image source={{ uri: photoUri }} style={styles.preview} accessibilityLabel="Captured photo preview" />
+        <Image
+          source={{ uri: photoUri }}
+          style={[styles.preview, mediaStyle]}
+          accessibilityLabel="Captured photo preview"
+        />
         <Pressable style={styles.secondaryButton} onPress={onRetake}>
           <Text style={styles.secondaryButtonText}>Retake photo</Text>
         </Pressable>
@@ -71,27 +79,28 @@ export function InlineCamera({ photoUri, onCapture, onRetake }: InlineCameraProp
 
   return (
     <View style={styles.cameraWrap}>
-      <CameraView ref={cameraRef} style={styles.camera} facing="back" />
-      <Pressable
-        style={[styles.shutter, capturing && styles.shutterDisabled]}
-        onPress={takePicture}
-        disabled={capturing}
-        accessibilityRole="button"
-        accessibilityLabel="Take photo"
-      >
-        {capturing ? (
-          <ActivityIndicator color={colors.ink} />
-        ) : (
-          <View style={styles.shutterInner} />
-        )}
-      </Pressable>
+      <CameraView ref={cameraRef} style={[styles.camera, mediaStyle]} facing="back" />
+      <View style={styles.shutterRow}>
+        <Pressable
+          style={[styles.shutter, capturing && styles.shutterDisabled]}
+          onPress={takePicture}
+          disabled={capturing}
+          accessibilityRole="button"
+          accessibilityLabel="Take photo"
+        >
+          {capturing ? (
+            <ActivityIndicator color={colors.ink} />
+          ) : (
+            <View style={styles.shutterInner} />
+          )}
+        </Pressable>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   centered: {
-    height: 240,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.grey,
@@ -126,14 +135,15 @@ const styles = StyleSheet.create({
   },
   camera: {
     width: '100%',
-    height: 280,
   },
-  shutter: {
+  shutterRow: {
     position: 'absolute',
     bottom: 16,
-    alignSelf: 'center',
-    left: '50%',
-    marginLeft: -32,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  shutter: {
     width: 64,
     height: 64,
     borderRadius: 32,
@@ -156,8 +166,6 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   preview: {
-    width: '100%',
-    height: 280,
     borderRadius: 12,
     backgroundColor: colors.grey,
   },

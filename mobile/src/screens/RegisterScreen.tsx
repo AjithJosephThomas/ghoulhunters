@@ -3,16 +3,17 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ScreenContainer } from '../components/ScreenContainer';
 import { siteConfig } from '../constants/site';
 import { generateUserId, saveUser } from '../storage/user';
 import { colors } from '../theme/colors';
+import { useResponsiveLayout } from '../theme/layout';
 import type { RootStackParamList } from '../navigation/types';
 import type { UserProfile } from '../types';
 import { getTimestampWithTimezone } from '../utils/timestamp';
@@ -25,6 +26,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Register'> & {
 export function RegisterScreen({ route, navigation, onRegistered }: Props) {
   const existing = route.params?.existingUser;
   const isEditing = Boolean(existing);
+  const { isTablet } = useResponsiveLayout();
 
   const [firstName, setFirstName] = useState(existing?.firstName ?? '');
   const [lastName, setLastName] = useState(existing?.lastName ?? '');
@@ -78,8 +80,9 @@ export function RegisterScreen({ route, navigation, onRegistered }: Props) {
     <KeyboardAvoidingView
       style={styles.flex}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 88 : 0}
     >
-      <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
+      <ScreenContainer contentContainerStyle={styles.content}>
         <Text style={styles.title}>{isEditing ? 'Edit profile' : 'Register'}</Text>
         <Text style={styles.subtitle}>
           {isEditing
@@ -87,8 +90,15 @@ export function RegisterScreen({ route, navigation, onRegistered }: Props) {
             : 'Tell us who you are so we can link your reports to you.'}
         </Text>
 
-        <Field label="First name *" value={firstName} onChangeText={setFirstName} />
-        <Field label="Last name *" value={lastName} onChangeText={setLastName} />
+        <View style={[styles.nameRow, isTablet && styles.nameRowTablet]}>
+          <View style={styles.nameField}>
+            <Field label="First name *" value={firstName} onChangeText={setFirstName} />
+          </View>
+          <View style={styles.nameField}>
+            <Field label="Last name *" value={lastName} onChangeText={setLastName} />
+          </View>
+        </View>
+
         <Field
           label="Address *"
           value={address}
@@ -124,7 +134,7 @@ export function RegisterScreen({ route, navigation, onRegistered }: Props) {
         <Text style={styles.disclaimer}>
           Student prototype — {siteConfig.name}. Not an official government app.
         </Text>
-      </ScrollView>
+      </ScreenContainer>
     </KeyboardAvoidingView>
   );
 }
@@ -161,9 +171,8 @@ function Field({
 
 const styles = StyleSheet.create({
   flex: { flex: 1, backgroundColor: colors.white },
-  container: {
-    padding: 20,
-    paddingBottom: 40,
+  content: {
+    paddingBottom: 32,
     gap: 12,
   },
   title: {
@@ -176,6 +185,15 @@ const styles = StyleSheet.create({
     color: colors.stone,
     lineHeight: 22,
     marginBottom: 8,
+  },
+  nameRow: {
+    gap: 12,
+  },
+  nameRowTablet: {
+    flexDirection: 'row',
+  },
+  nameField: {
+    flex: 1,
   },
   field: { gap: 6 },
   fieldLabel: {

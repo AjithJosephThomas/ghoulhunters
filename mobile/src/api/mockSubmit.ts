@@ -14,8 +14,9 @@ export async function submitReport(payload: ReportPayload): Promise<SubmitReport
     userId: payload.userId,
     tag: payload.tag,
     remarks: payload.remarks ?? null,
-    latitude: payload.latitude,
-    longitude: payload.longitude,
+    latitude: payload.latitude ?? null,
+    longitude: payload.longitude ?? null,
+    locationSource: payload.locationSource,
     timestamp: payload.timestamp,
     imageBase64Length: payload.imageBase64.length,
   });

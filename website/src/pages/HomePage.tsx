@@ -14,6 +14,7 @@ import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { activePrograms, siteConfig } from '../config';
 import { HomeHero } from '../components/home/HomeHero';
+import { MobileAppBox } from '../components/common/MobileAppBox';
 import { ReportBox } from '../components/common/ReportBox';
 import { Reveal, StaggerGrid, StaggerItem } from '../components/common/Reveal';
 import { SpeciesCard } from '../components/cards/SpeciesCard';
@@ -51,6 +52,7 @@ export function HomePage() {
       <HomeHero />
 
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
+        <Box id="biodiversity-queensland" sx={{ scrollMarginTop: 88 }}>
         <Reveal>
           <SectionTitle icon={<Box component="span" sx={{ fontSize: 32 }}>🐟</Box>}>Protecting our waterways</SectionTitle>
           <Typography
@@ -73,6 +75,7 @@ export function HomePage() {
             )}
           </Typography>
         </Reveal>
+        </Box>
 
         <Box id="invasive-species" sx={{ mb: 6, scrollMarginTop: 88 }}>
           <Reveal>
@@ -140,6 +143,7 @@ export function HomePage() {
           </Grid>
         </StaggerGrid>
 
+        <MobileAppBox />
         <ReportBox />
       </Container>
     </>

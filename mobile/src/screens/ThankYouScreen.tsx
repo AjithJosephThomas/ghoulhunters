@@ -1,5 +1,6 @@
 import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ScreenContainer } from '../components/ScreenContainer';
 import { siteConfig } from '../constants/site';
 import { colors } from '../theme/colors';
 import type { RootStackParamList } from '../navigation/types';
@@ -9,8 +10,12 @@ type Props = NativeStackScreenProps<RootStackParamList, 'ThankYou'>;
 export function ThankYouScreen({ route, navigation }: Props) {
   const { reportId } = route.params;
 
+  const openUrl = (url: string) => {
+    Linking.openURL(url);
+  };
+
   return (
-    <View style={styles.container}>
+    <ScreenContainer centerContent contentContainerStyle={styles.content}>
       <View style={styles.card}>
         <Text style={styles.title}>Thank you!</Text>
         <Text style={styles.body}>
@@ -19,17 +24,24 @@ export function ThankYouScreen({ route, navigation }: Props) {
         <Text style={styles.reference}>Reference: {reportId}</Text>
       </View>
 
-      <View style={styles.bqCard}>
-        <Text style={styles.bqTitle}>Also report to {siteConfig.biosecurity.authority}</Text>
-        <Text style={styles.bqBody}>
-          Call {siteConfig.biosecurity.phone} or use the official online form so authorities can
-          respond.
+      <View style={styles.linksCard}>
+        <Text style={styles.linksTitle}>On the Bio Buddies website</Text>
+        <Text style={styles.linksBody}>
+          Learn how to report to official biosecurity channels and find out about spotter rewards.
         </Text>
+
         <Pressable
           style={styles.linkButton}
-          onPress={() => Linking.openURL(siteConfig.biosecurity.reportUrl)}
+          onPress={() => openUrl(siteConfig.website.reportBiosecurityUrl)}
         >
-          <Text style={styles.linkButtonText}>Open official report form</Text>
+          <Text style={styles.linkButtonText}>Report to Biosecurity Queensland</Text>
+        </Pressable>
+
+        <Pressable
+          style={styles.linkButton}
+          onPress={() => openUrl(siteConfig.website.spotterRewardsUrl)}
+        >
+          <Text style={styles.linkButtonText}>Spotter rewards</Text>
         </Pressable>
       </View>
 
@@ -39,17 +51,14 @@ export function ThankYouScreen({ route, navigation }: Props) {
       >
         <Text style={styles.primaryButtonText}>Report another sighting</Text>
       </Pressable>
-    </View>
+    </ScreenContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.white,
-    padding: 20,
+  content: {
     gap: 16,
-    justifyContent: 'center',
+    paddingBottom: 32,
   },
   card: {
     backgroundColor: colors.greenPale,
@@ -75,25 +84,24 @@ const styles = StyleSheet.create({
     color: colors.ink,
     marginTop: 4,
   },
-  bqCard: {
+  linksCard: {
     backgroundColor: colors.yellowLight,
     borderRadius: 16,
     padding: 20,
-    gap: 10,
+    gap: 12,
   },
-  bqTitle: {
+  linksTitle: {
     fontSize: 17,
     fontWeight: '700',
     color: colors.ink,
   },
-  bqBody: {
+  linksBody: {
     fontSize: 15,
     color: colors.stone,
     lineHeight: 22,
   },
   linkButton: {
-    alignSelf: 'flex-start',
-    paddingVertical: 10,
+    paddingVertical: 12,
     paddingHorizontal: 14,
     borderRadius: 20,
     backgroundColor: colors.white,
@@ -103,7 +111,8 @@ const styles = StyleSheet.create({
   linkButtonText: {
     color: colors.green,
     fontWeight: '700',
-    fontSize: 14,
+    fontSize: 15,
+    textAlign: 'center',
   },
   primaryButton: {
     backgroundColor: colors.green,

@@ -5,7 +5,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -15,6 +14,7 @@ import * as Location from 'expo-location';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { submitReport } from '../api/mockSubmit';
 import { InlineCamera } from '../components/InlineCamera';
+import { ScreenContainer } from '../components/ScreenContainer';
 import { TagSelector } from '../components/TagSelector';
 import { siteConfig } from '../constants/site';
 import type { RootStackParamList } from '../navigation/types';
@@ -32,20 +32,31 @@ interface Coordinates {
   longitude: number;
 }
 
-async function captureLocation(): Promise<Coordinates | null> {
+type LocationResult =
+  | { ok: true; coords: Coordinates }
+  | { ok: false; reason: 'denied' | 'unavailable' };
+
+async function captureLocation(): Promise<LocationResult> {
   const { status } = await Location.requestForegroundPermissionsAsync();
   if (status !== 'granted') {
-    return null;
+    return { ok: false, reason: 'denied' };
   }
 
-  const position = await Location.getCurrentPositionAsync({
-    accuracy: Location.Accuracy.Balanced,
-  });
+  try {
+    const position = await Location.getCurrentPositionAsync({
+      accuracy: Location.Accuracy.Balanced,
+    });
 
-  return {
-    latitude: position.coords.latitude,
-    longitude: position.coords.longitude,
-  };
+    return {
+      ok: true,
+      coords: {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      },
+    };
+  } catch {
+    return { ok: false, reason: 'unavailable' };
+  }
 }
 
 export function ReportScreen({ navigation, user }: Props) {
@@ -53,11 +64,12 @@ export function ReportScreen({ navigation, user }: Props) {
   const [photoBase64, setPhotoBase64] = useState<string | null>(null);
   const [selectedTag, setSelectedTag] = useState<ReportTag | null>(null);
   const [remarks, setRemarks] = useState('');
+  const [locationFallbackNeeded, setLocationFallbackNeeded] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitPhase, setSubmitPhase] = useState<'idle' | 'location' | 'upload'>('idle');
   const [error, setError] = useState<string | null>(null);
 
-  const remarksRequired = selectedTag === 'others';
+  const remarksRequired = selectedTag === 'others' || locationFallbackNeeded;
 
   const handleCapture = (uri: string, base64: string) => {
     setPhotoUri(uri);
@@ -80,7 +92,11 @@ export function ReportScreen({ navigation, user }: Props) {
       return;
     }
     if (remarksRequired && !isNonEmpty(remarks)) {
-      setError('Remarks are required when you select Others.');
+      if (locationFallbackNeeded) {
+        setError('GPS is unavailable. Add where you saw it in remarks (e.g. riverbank, park name).');
+      } else {
+        setError('Remarks are required when you select Others.');
+      }
       return;
     }
 
@@ -88,33 +104,60 @@ export function ReportScreen({ navigation, user }: Props) {
     setError(null);
     setSubmitPhase('location');
 
-    let location: Coordinates | null = null;
-    try {
-      location = await captureLocation();
-    } catch {
-      setError('Could not get your location. Check GPS is enabled and try again.');
-      setSubmitting(false);
-      setSubmitPhase('idle');
+    const locationResult = await captureLocation();
+
+    if (locationResult.ok) {
+      setLocationFallbackNeeded(false);
+      const timestamp = getTimestampWithTimezone();
+      setSubmitPhase('upload');
+
+      try {
+        const response = await submitReport({
+          userId: user.userId,
+          tag: selectedTag,
+          remarks: remarks.trim() || undefined,
+          latitude: locationResult.coords.latitude,
+          longitude: locationResult.coords.longitude,
+          locationSource: 'gps',
+          timestamp,
+          imageBase64: photoBase64,
+        });
+
+        navigation.replace('ThankYou', { reportId: response.reportId });
+      } catch {
+        Alert.alert('Submit failed', 'Please try again in a moment.');
+      } finally {
+        setSubmitting(false);
+        setSubmitPhase('idle');
+      }
       return;
     }
 
-    if (!location) {
-      setError('Location permission is required to submit a report.');
-      setSubmitting(false);
-      setSubmitPhase('idle');
+    setLocationFallbackNeeded(true);
+    setSubmitting(false);
+    setSubmitPhase('idle');
+
+    if (!isNonEmpty(remarks)) {
+      setError(
+        locationResult.reason === 'denied'
+          ? 'Location permission denied. Add where you saw it in remarks below, then submit again.'
+          : 'Could not get GPS. Add where you saw it in remarks below, then submit again.',
+      );
       return;
     }
 
     const timestamp = getTimestampWithTimezone();
+    setSubmitting(true);
     setSubmitPhase('upload');
 
     try {
       const response = await submitReport({
         userId: user.userId,
         tag: selectedTag,
-        remarks: remarks.trim() || undefined,
-        latitude: location.latitude,
-        longitude: location.longitude,
+        remarks: remarks.trim(),
+        latitude: null,
+        longitude: null,
+        locationSource: 'manual',
         timestamp,
         imageBase64: photoBase64,
       });
@@ -128,6 +171,18 @@ export function ReportScreen({ navigation, user }: Props) {
     }
   };
 
+  const remarksPlaceholder = locationFallbackNeeded
+    ? 'Describe where you saw it (required — GPS unavailable)'
+    : remarksRequired
+      ? 'Describe what you saw (required for Others)'
+      : 'Add any extra details';
+
+  const remarksSectionTitle = locationFallbackNeeded
+    ? 'Remarks * (include location)'
+    : remarksRequired
+      ? 'Remarks *'
+      : 'Remarks (optional)';
+
   const submitLabel =
     submitPhase === 'location'
       ? 'Getting location…'
@@ -139,8 +194,9 @@ export function ReportScreen({ navigation, user }: Props) {
     <KeyboardAvoidingView
       style={styles.flex}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 88 : 0}
     >
-      <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
+      <ScreenContainer contentContainerStyle={styles.content}>
         <Text style={styles.tagline}>{siteConfig.tagline}</Text>
         <Text style={styles.warning}>{siteConfig.biosecurity.defaultWarning}</Text>
 
@@ -154,26 +210,33 @@ export function ReportScreen({ navigation, user }: Props) {
           <TagSelector selectedTag={selectedTag} onSelect={setSelectedTag} />
         </Section>
 
-        <Section title={remarksRequired ? 'Remarks *' : 'Remarks (optional)'}>
+        <Section title={remarksSectionTitle}>
+          {locationFallbackNeeded ? (
+            <Text style={styles.locationHint}>
+              GPS could not be used. Please type where you saw the creature so we can still
+              record the sighting.
+            </Text>
+          ) : null}
           <TextInput
             style={styles.remarksInput}
             value={remarks}
             onChangeText={setRemarks}
-            placeholder={
-              remarksRequired
-                ? 'Describe what you saw (required for Others)'
-                : 'Add any extra details'
-            }
+            placeholder={remarksPlaceholder}
             multiline
             textAlignVertical="top"
           />
         </Section>
 
         <Text style={styles.timestampNote}>
-          Location and timestamp are captured when you submit.
+          GPS location is captured on submit when available. Otherwise, add location details in
+          remarks.
         </Text>
 
         {error ? <Text style={styles.error}>{error}</Text> : null}
+
+        <Text style={styles.version}>
+          Updated build {siteConfig.appVersion} — menu slides up from bottom with website links
+        </Text>
 
         <Pressable
           style={[styles.submitButton, submitting && styles.submitDisabled]}
@@ -189,7 +252,7 @@ export function ReportScreen({ navigation, user }: Props) {
             <Text style={styles.submitText}>Submit report</Text>
           )}
         </Pressable>
-      </ScrollView>
+      </ScreenContainer>
     </KeyboardAvoidingView>
   );
 }
@@ -205,9 +268,8 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 
 const styles = StyleSheet.create({
   flex: { flex: 1, backgroundColor: colors.white },
-  container: {
-    padding: 20,
-    paddingBottom: 40,
+  content: {
+    paddingBottom: 32,
     gap: 8,
   },
   tagline: {
@@ -230,6 +292,11 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: colors.ink,
   },
+  locationHint: {
+    fontSize: 14,
+    color: colors.stone,
+    lineHeight: 20,
+  },
   remarksInput: {
     borderWidth: 1,
     borderColor: colors.grey,
@@ -251,6 +318,12 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 14,
     marginTop: 8,
+  },
+  version: {
+    marginTop: 12,
+    fontSize: 12,
+    color: colors.stone,
+    textAlign: 'center',
   },
   submitButton: {
     marginTop: 20,
