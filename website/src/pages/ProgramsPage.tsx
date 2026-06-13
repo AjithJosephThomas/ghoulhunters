@@ -8,11 +8,11 @@ import { SectionTitle } from '../components/common/SectionTitle';
 import { usePageTitle } from '../hooks/usePageTitle';
 
 export function ProgramsPage() {
-  const { programs } = siteConfig;
+  const { programs, site } = siteConfig;
   const active = programs.filter((p) => p.status === 'active');
   const comingSoon = programs.filter((p) => p.status === 'coming-soon');
 
-  usePageTitle('Programs', 'Nature Ninjas invasive species watch programs.');
+  usePageTitle('Programs', `${site.name} invasive species watch programs.`);
 
   return (
     <>
@@ -23,7 +23,7 @@ export function ProgramsPage() {
             paragraph
             sx={{ maxWidth: 740, mx: 'auto', textAlign: 'center', mb: 5, fontSize: '1.05rem', lineHeight: 1.8 }}
           >
-            Nature Ninjas runs <strong>community watch programs</strong> for invasive species in our region.
+            {site.name} runs <strong>community watch programs</strong> for invasive species in our region.
             Each program includes a species guide and a watch project page.
           </Typography>
         </Reveal>

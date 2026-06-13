@@ -24,10 +24,10 @@ import { palette } from '../theme/palette';
 import { usePageTitle } from '../hooks/usePageTitle';
 import { scrollToSection } from '../utils/scrollToSection';
 
-const exploreCards = [
+const exploreCards = (siteName: string) => [
   { title: 'Programs', desc: 'Species guides and community watch projects', to: '/programs', icon: 'programs' },
-  { title: 'How it works', desc: 'How Nature Ninjas runs community watch programs', to: '/how-it-works', icon: 'how_it_works' },
-  { title: 'Who We Are', desc: 'Meet the Nature Ninjas team', to: '/who-we-are', icon: 'who_we_are' },
+  { title: 'How it works', desc: `How ${siteName} runs community watch programs`, to: '/how-it-works', icon: 'how_it_works' },
+  { title: 'Who We Are', desc: `Meet the ${siteName} team`, to: '/who-we-are', icon: 'who_we_are' },
   { title: 'Blueprint', desc: 'Diagrams and process flow', to: '/blueprint', icon: 'blueprint' },
 ];
 
@@ -59,7 +59,7 @@ export function HomePage() {
             sx={{ maxWidth: 680, mx: 'auto', mb: 4, fontSize: '1.0625rem', lineHeight: 1.75 }}
           >
             Invasive species threaten <strong>biodiversity</strong>, river health, and the places we love.
-            Nature Ninjas helps kids, families, and neighbours <strong>learn</strong>, <strong>spot</strong>, and{' '}
+            {site.name} helps kids, families, and neighbours <strong>learn</strong>, <strong>spot</strong>, and{' '}
             <strong>report</strong> safely — without touching or moving pests.
             {reporterRewards.enabled && (
               <>
@@ -100,11 +100,11 @@ export function HomePage() {
         </Box>
 
         <Reveal>
-          <SectionTitle icon={<Box component="span" sx={{ fontSize: 32 }}>🗺️</Box>} sx={{ mb: 2 }}>Explore Nature Ninjas</SectionTitle>
+          <SectionTitle icon={<Box component="span" sx={{ fontSize: 32 }}>🗺️</Box>} sx={{ mb: 2 }}>Explore {site.name}</SectionTitle>
         </Reveal>
         <StaggerGrid>
           <Grid container spacing={2}>
-            {exploreCards.map((card, i) => {
+            {exploreCards(site.name).map((card, i) => {
               const Icon = getIcon(card.icon);
               return (
                 <Grid item xs={12} sm={6} md={3} key={card.to}>

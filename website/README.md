@@ -1,4 +1,4 @@
-# Nature Ninjas website
+# Bio Buddies website
 
 **React + Material UI** site for biodiversity education, species guides, and community watch programs.
 

@@ -138,9 +138,10 @@ export function FreshwaterGoldClamSpecies({ program }: Props) {
                 Do
               </Typography>
               <Box component="ul" sx={{ pl: 2.5, m: 0 }}>
-                <li>Take a <strong>photo</strong> if safe</li>
-                <li>Note your <strong>location</strong></li>
-                <li>Report to <strong>Biosecurity Queensland within 24 hours</strong></li>
+                <li>Open the <strong>Bio Buddies mobile app</strong></li>
+                <li>Take a <strong>photo</strong> from a safe distance</li>
+                <li><strong>Tag</strong> the suspected pest in the app</li>
+                <li><strong>Submit</strong> — Bio Buddies handles the rest</li>
                 <li><strong>Check, clean, dry</strong> boats and gear</li>
               </Box>
             </Card>

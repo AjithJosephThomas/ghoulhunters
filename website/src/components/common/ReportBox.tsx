@@ -5,7 +5,7 @@ import { palette } from '../../theme/palette';
 import { Reveal } from './Reveal';
 
 export function ReportBox() {
-  const { biosecurity } = siteConfig;
+  const { biosecurity, site } = siteConfig;
 
   return (
     <Reveal>
@@ -67,7 +67,7 @@ export function ReportBox() {
           Report online
         </Button>
         <Typography variant="body2" sx={{ mt: 2, color: palette.stone }}>
-          Nature Ninjas supports community awareness — always use official reporting.
+          {site.name} supports community awareness — always use official reporting.
         </Typography>
       </Paper>
     </Reveal>

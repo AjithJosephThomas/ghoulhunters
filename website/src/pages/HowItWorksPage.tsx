@@ -1,8 +1,11 @@
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import DoNotTouchIcon from '@mui/icons-material/DoNotTouch';
 import GroupsIcon from '@mui/icons-material/Groups';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import PhoneIcon from '@mui/icons-material/Phone';
 import SearchIcon from '@mui/icons-material/Search';
+import SellIcon from '@mui/icons-material/Sell';
 import ShareIcon from '@mui/icons-material/Share';
 import {
   Box,
@@ -22,8 +25,9 @@ import { Reveal } from '../components/common/Reveal';
 import { SectionTitle } from '../components/common/SectionTitle';
 import { palette } from '../theme/palette';
 import { usePageTitle } from '../hooks/usePageTitle';
+import { siteConfig } from '../config';
 
-const stepIcons = [MenuBookIcon, SearchIcon, CameraAltIcon, GroupsIcon, PhoneIcon];
+const stepIcons = [SearchIcon, DoNotTouchIcon, CameraAltIcon, SellIcon, CloudUploadIcon];
 
 const cycleSteps = [
   'Educate — share official government facts',
@@ -40,15 +44,16 @@ const tools = [
   { label: 'Blueprint & process diagrams', icon: GroupsIcon },
   { label: 'Official reporting — 13 25 23', icon: PhoneIcon },
   { label: 'Check, clean, dry messaging', icon: SearchIcon },
-  { label: 'Report form — Phase 2', icon: CameraAltIcon },
+  { label: 'Bio Buddies mobile app — photograph, tag, and submit', icon: CameraAltIcon },
 ];
 
 export function HowItWorksPage() {
-  usePageTitle('How it works', 'How Nature Ninjas community watch programs work.');
+  const { site } = siteConfig;
+  usePageTitle('How it works', `How ${site.name} community watch programs work.`);
 
   return (
     <>
-      <PageHero title="How it works" subtitle="Nature Ninjas community invasive species watch" />
+      <PageHero title="How it works" subtitle={`${site.name} community invasive species watch`} />
       <Container maxWidth="md" sx={{ py: { xs: 4, md: 5 } }}>
         <Reveal>
           <Chip label="Community watch · Environment · Biodiversity" sx={{ mb: 2 }} />
@@ -63,11 +68,11 @@ export function HowItWorksPage() {
           <SectionTitle align="left">How every program works</SectionTitle>
           <Stack spacing={1.5} sx={{ mt: 2 }}>
             {[
-              { step: 'Learn', desc: 'read the species guide on this website or on our posters' },
-              { step: 'See', desc: 'spot something that matches the identification guide' },
-              { step: 'Photo', desc: 'take a picture from a safe distance' },
-              { step: 'Remember location', desc: 'note where you are' },
-              { step: 'Report officially', desc: 'call Biosecurity Queensland 13 25 23' },
+              { step: 'See', desc: 'spot a suspected pest in the river' },
+              { step: 'Do not remove it', desc: 'leave the pest where it is — moving it can spread the species' },
+              { step: 'Photo', desc: 'take a picture using the Bio Buddies mobile app' },
+              { step: 'Tag', desc: 'tag the picture with the pest it is suspected to be' },
+              { step: 'Submit', desc: 'send the picture to the Bio Buddies server' },
             ].map((item, i) => (
               <Box
                 key={item.step}
@@ -148,9 +153,9 @@ export function HowItWorksPage() {
         <Reveal sx={{ mt: 4 }}>
           <InvasiveCallout title="What we do not do">
             <Box component="ul" sx={{ pl: 2.5, m: 0, lineHeight: 1.75 }}>
-              <li>We do <strong>not</strong> collect or move invasive species</li>
-              <li>We do <strong>not</strong> replace official biosecurity reporting</li>
-              <li>We do <strong>not</strong> claim to eradicate pests</li>
+              <li>This system does <strong>not</strong> replace Biosecurity Queensland — they remain the official authority for pest management.</li>
+              <li>Our volunteers will only work under the guidance of Biosecurity Queensland.</li>
+              <li>Reporters or volunteers should <strong>not</strong> pick up or move invasive species without proper guidance from Biosecurity Queensland.</li>
             </Box>
           </InvasiveCallout>
         </Reveal>

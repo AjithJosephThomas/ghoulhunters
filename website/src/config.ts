@@ -42,12 +42,12 @@ export interface Program {
 
 export const siteConfig = {
   site: {
-    name: 'Nature Ninjas',
+    name: 'Bio Buddies',
     tagline: "See it. Snap it. Report it. Don't move it.",
     subtitle: "Protecting Queensland's biodiversity",
     region: 'Brisbane River & south-east Queensland',
     description:
-      'Nature Ninjas helps communities learn about invasive species, report safely, and earn spotter rewards for genuine accurate sightings.',
+      'Bio Buddies helps communities learn about invasive species, report safely, and earn spotter rewards for genuine accurate sightings.',
     schoolName: "St Anthony's Primary School",
     schoolSuburb: 'Kedron',
     schoolYearLevel: 'Grade 5',
@@ -58,12 +58,12 @@ export const siteConfig = {
     enabled: true,
     path: '/spotter-rewards',
     pageMetaDescription:
-      'Earn Nature Ninjas spotter rewards for genuine, accurate invasive species sightings — mugs, jackets, coupons, and more.',
+      'Earn Bio Buddies spotter rewards for genuine, accurate invasive species sightings — mugs, jackets, coupons, and more.',
     heading: 'Spotter rewards',
     badge: 'Thank our heroes',
     lead: 'Real sightings. Real impact. Real thanks.',
     body:
-      'Nature Ninjas celebrates people who help with care and honesty. Stay active, report what you really see, and you could earn thank-you gifts from our community program.',
+      'Bio Buddies celebrates people who help with care and honesty. Stay active, report what you really see, and you could earn thank-you gifts from our community program.',
     eligibilityHeading: 'Who can earn rewards?',
     eligibility:
       'Active members who submit genuine, accurate sightings that help protect our rivers and wildlife. Each report is reviewed — we only reward helpful, honest reports.',
@@ -74,7 +74,7 @@ export const siteConfig = {
       { icon: 'emoji_events', label: 'More spotter prizes' },
     ] as RewardItem[],
     note:
-      'Always report suspected pests to official biosecurity channels too. Nature Ninjas rewards are extra thank-yous for our community — not a replacement for official reporting.',
+      'Always report suspected pests to official biosecurity channels too. Bio Buddies rewards are extra thank-yous for our community — not a replacement for official reporting.',
   },
 
   biosecurity: {
@@ -113,7 +113,7 @@ export const siteConfig = {
       metaDescription:
         'Identify freshwater gold clam (Corbicula fluminea) in the Brisbane River. Official facts, photos, and what to do if you see one.',
       watchMetaDescription:
-        'Nature Ninjas Gold Clam Watch — community awareness and reporting for Brisbane River biosecurity.',
+        'Bio Buddies Gold Clam Watch — community awareness and reporting for Brisbane River biosecurity.',
       doNotMoveWarning:
         'Do not touch or move freshwater gold clam — it can spread the pest.',
       doNotMoveDetail:

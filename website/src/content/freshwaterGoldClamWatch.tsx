@@ -19,7 +19,7 @@ export function FreshwaterGoldClamWatch() {
           Overview
         </Typography>
         <Typography paragraph>
-          The <strong>Nature Ninjas Gold Clam Watch</strong> is a community response to an invasive species in
+          The <strong>Bio Buddies Gold Clam Watch</strong> is a community response to an invasive species in
           the Brisbane River. We teach the community how to recognise the clam and report it without harming
           the environment.
         </Typography>
@@ -57,7 +57,7 @@ export function FreshwaterGoldClamWatch() {
           Future vision (Phase 2)
         </Typography>
         <Box component="ul" sx={{ pl: 2.5 }}>
-          <li>A simple report form on this website</li>
+          <li>Bio Buddies mobile app — photograph, tag, and submit sightings directly</li>
           <li>Partnership conversations with Brisbane City Council</li>
           <li>More languages for river visitors</li>
         </Box>

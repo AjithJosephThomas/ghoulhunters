@@ -11,7 +11,7 @@ import { usePageTitle } from '../hooks/usePageTitle';
 const phase2Highlights = [
   {
     title: 'Mobile application',
-    body: 'Spotters photograph pests and submit sightings through the Nature Ninjas mobile app.',
+    body: 'Spotters photograph pests, tag the suspected species, and submit sightings to the Bio Buddies server through the mobile app.',
   },
   {
     title: 'Machine learning review',
@@ -30,76 +30,103 @@ const phase2Highlights = [
 const systemLayers = [
   {
     title: 'Mobile app',
-    body: 'React Native or Flutter app — capture photo, GPS, and time; optional on-device quality hints before upload.',
+    body: 'A user-friendly way for the community to report a finding — far simpler than the traditional approach of calling a hotline or manually uploading photos. Spotters open the app, take a picture, tag the suspected pest, and submit in seconds.',
   },
   {
     title: 'API backend',
-    body: 'Python FastAPI service — receives submissions, runs ML review, clusters genuine reports, and alerts volunteers.',
+    body: 'The backbone that connects all parts of the system. It receives submissions from the mobile app, passes them to the machine learning pipeline, and routes validated findings to the right volunteers — keeping everything running smoothly without manual coordination.',
   },
   {
     title: 'Web application',
-    body: 'Nature Ninjas website — species guides, volunteer review queue, progress statistics, and spotter rewards.',
+    body: 'The public face of Bio Buddies. It gives the community access to species guides, watch program updates, and spotter rewards — and gives volunteers a queue to review uncertain findings and track real-world progress.',
   },
   {
     title: 'Volunteer & biosecurity workflow',
-    body: 'Human review for uncertain cases; Biosecurity Queensland remains the authority for official reporting and collection approval.',
+    body: 'Trained Bio Buddies volunteers step in where the app cannot — reviewing edge cases, confirming findings in the field, and working directly with Biosecurity Queensland to ensure pests are removed safely and officially.',
   },
 ];
 
 const mlStack = [
   {
-    title: 'Training — PyTorch + timm',
-    body: 'Fine-tune vision models on labelled photos using transfer learning (EfficientNet-B0, EfficientNet-Lite, or MobileNetV3).',
+    title: 'Learning from real sightings',
+    body: 'The machine learning model is trained on labelled photos of invasive species and look-alikes so it builds an accurate picture of what a genuine finding looks like — getting smarter as more sightings are submitted.',
   },
   {
-    title: 'Serving — ONNX Runtime',
-    body: 'Export trained models to ONNX for fast, consistent inference in the Python backend.',
+    title: 'Identifying findings on the server',
+    body: 'When a submission arrives, the server runs the trained model to determine whether the photo shows a genuine invasive species. This avoids incorrect findings reaching volunteers without requiring a human to manually check every report.',
   },
   {
-    title: 'Optional detection — Ultralytics YOLO',
-    body: 'Find and crop a clam or shell in busy riverbank photos before classification when the subject is small in frame.',
+    title: 'Spotting the pest in the photo',
+    body: 'If the pest is small or partially hidden in a busy riverbank photo, an additional detection step locates and zooms in on it automatically — so the classifier always works with the clearest possible view.',
   },
   {
-    title: 'On-device hints — TensorFlow Lite or ONNX Runtime Mobile',
-    body: 'Light checks on the phone only (blur, darkness, “nothing visible”) — not final species identification.',
+    title: 'Instant quality feedback on the phone',
+    body: 'Before the photo is even submitted, the app gives the spotter a quick hint if something is obviously wrong — blurry, too dark, or nothing visible — so they can retake it on the spot rather than submitting an unusable image.',
   },
 ];
+
+const reportFlowDiagram = {
+  src: 'report-flow.svg',
+  alt: 'Report flow',
+  caption: 'Figure 1 — What to do when you see a suspected invasive species',
+  title: 'Report flow',
+  desc: 'Spot the pest, leave it in place, photograph and tag it in the Bio Buddies mobile app, then submit it to the Bio Buddies server — Bio Buddies handles reporting to Biosecurity Queensland.',
+};
 
 const diagrams = [
   {
     src: 'design-process.svg',
     alt: 'Community watch flow',
-    caption: 'Figure 1 — The Nature Ninjas community watch flow',
+    caption: 'Figure 2 — The Bio Buddies community watch flow',
     title: 'Community watch flow',
     desc: 'Learn, spot, photograph, report, and help protect the environment.',
   },
   {
     src: 'system-context.svg',
     alt: 'System context diagram',
-    caption: 'Figure 2 — How Nature Ninjas connects the community',
+    caption: 'Figure 3 — How Bio Buddies connects the community',
     title: 'How each program connects',
     desc: 'River visitor → poster QR → website and mobile app → official reporting → healthier environment',
   },
   {
     src: 'execution-cycle.svg',
     alt: 'Program cycle',
-    caption: 'Figure 3 — Ongoing Nature Ninjas program cycle',
+    caption: 'Figure 4 — Ongoing Bio Buddies program cycle',
     title: 'Program cycle',
     desc: 'Educate, watch, identify, report, prevent, outreach — an ongoing cycle.',
   },
-  {
-    src: 'report-flow.svg',
-    alt: 'Report flow',
-    caption: 'Figure 4 — What to do when you see a suspected invasive species',
-    title: 'Report flow',
-    desc: 'What every spotter should do today — including reporting to Biosecurity Queensland within 24 hours.',
-  },
 ];
+
+function DiagramFigure({ d }: { d: typeof reportFlowDiagram }) {
+  return (
+    <>
+      <SectionTitle align="left" sx={{ fontSize: '1.5rem' }}>
+        {d.title}
+      </SectionTitle>
+      <Typography color="text.secondary" paragraph>
+        {d.desc}
+      </Typography>
+      <Box
+        component="img"
+        src={`${import.meta.env.BASE_URL}images/diagrams/${d.src}`}
+        alt={d.alt}
+        sx={{
+          width: '100%',
+          borderRadius: 3,
+          boxShadow: '0 8px 32px rgba(26,107,124,0.12)',
+        }}
+      />
+      <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1, textAlign: 'center' }}>
+        {d.caption}
+      </Typography>
+    </>
+  );
+}
 
 export function BlueprintPage() {
   usePageTitle(
     'Blueprint & Process',
-    'Nature Ninjas Phase 2 blueprint — mobile app, PyTorch ML review, volunteer alerts, and Biosecurity Queensland coordination.',
+    'Bio Buddies Phase 2 blueprint — mobile app, PyTorch ML review, volunteer alerts, and Biosecurity Queensland coordination.',
   );
 
   return (
@@ -109,15 +136,19 @@ export function BlueprintPage() {
         <Reveal>
           <SectionTitle align="left">What is the blueprint?</SectionTitle>
           <Typography paragraph>
-            The <strong>blueprint</strong> is the shared plan for every Nature Ninjas watch program — connecting
+            The <strong>blueprint</strong> is the shared plan for every Bio Buddies watch program — connecting
             river visitors, education materials, official biosecurity reporting, and our proposed{' '}
             <strong>Phase 2 digital platform</strong>.
           </Typography>
         </Reveal>
 
-        <Reveal>
+        <Reveal sx={{ mt: 5 }}>
+          <DiagramFigure d={reportFlowDiagram} />
+        </Reveal>
+
+        <Reveal sx={{ mt: 5 }}>
           <Chip label="Proposed — Phase 2" sx={{ mb: 2 }} />
-          <SectionTitle align="left">Nature Ninjas mobile app & platform</SectionTitle>
+          <SectionTitle align="left">Bio Buddies mobile app & platform</SectionTitle>
           <Typography paragraph>
             Our proposed Phase 2 plan connects the <strong>mobile application</strong>,{' '}
             <strong>web application</strong>, <strong>machine learning</strong>, trained volunteers, and the{' '}
@@ -138,16 +169,14 @@ export function BlueprintPage() {
           <InvasiveCallout title="Important — collection and official reporting">
             <Box component="ul" sx={{ pl: 2.5, m: 0, lineHeight: 1.75 }}>
               <li>
-                Always report suspected pests to <strong>Biosecurity Queensland (13 25 23)</strong> — the Nature
-                Ninjas app does not replace official reporting.
+                Bio Buddies will report suspected pests to <strong>Biosecurity Queensland (13 25 23)</strong> — the Bio
+                Buddies app does not replace official reporting.
               </li>
               <li>
-                Volunteers <strong>do not collect</strong> pests unless Biosecurity Queensland experts confirm
-                it is safe and authorised.
+                Volunteers report and work closely with Biosecurity Queensland experts to confirm the finding and to remove it according to safe and authorised processes.
               </li>
               <li>
-                Today&apos;s programs focus on education and spotting; the flow below describes our{' '}
-                <strong>proposed</strong> Phase 2 platform.
+                Today&apos;s programs focus on education and spotting; the flow below describes our proposed mobile app platform.
               </li>
             </Box>
           </InvasiveCallout>
@@ -212,25 +241,7 @@ export function BlueprintPage() {
 
         {diagrams.map((d) => (
           <Reveal key={d.src} sx={{ mt: 5 }}>
-            <SectionTitle align="left" sx={{ fontSize: '1.5rem' }}>
-              {d.title}
-            </SectionTitle>
-            <Typography color="text.secondary" paragraph>
-              {d.desc}
-            </Typography>
-            <Box
-              component="img"
-              src={`${import.meta.env.BASE_URL}images/diagrams/${d.src}`}
-              alt={d.alt}
-              sx={{
-                width: '100%',
-                borderRadius: 3,
-                boxShadow: '0 8px 32px rgba(26,107,124,0.12)',
-              }}
-            />
-            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1, textAlign: 'center' }}>
-              {d.caption}
-            </Typography>
+            <DiagramFigure d={d} />
           </Reveal>
         ))}
 

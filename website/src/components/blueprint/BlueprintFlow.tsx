@@ -15,12 +15,17 @@ const steps = [
   {
     title: 'Spot & photograph',
     body:
-      'A spotter sees a suspected invasive species and uses the Nature Ninjas mobile app to take a photo from a safe distance — without touching or moving the pest.',
+      'A spotter sees a suspected pest in the river and uses the Bio Buddies mobile app to take a picture from a safe distance — without removing or moving the pest.',
   },
   {
-    title: 'Send to web app',
+    title: 'Tag the suspected pest',
     body:
-      'The photo, GPS location, and time are sent securely from the mobile app to the Nature Ninjas web application for review.',
+      'In the mobile app, the spotter tags the picture with the pest it is suspected to be, using the species guides to help identify it.',
+  },
+  {
+    title: 'Submit to server',
+    body:
+      'The picture, tag, GPS location, and time are submitted securely from the mobile app to the Bio Buddies server for review.',
   },
   {
     title: 'Verify genuine findings',
@@ -30,22 +35,22 @@ const steps = [
   {
     title: 'Alert nearest volunteer',
     body:
-      'When several validated reports cluster in the same area, the system groups them and alerts the closest trained Nature Ninjas volunteer.',
+      'When several validated reports cluster in the same area, the system groups them and alerts the closest trained Bio Buddies volunteer.',
   },
   {
-    title: 'Consult Biosecurity QLD',
+    title: 'Volunteer — Consult Biosecurity QLD',
     body:
-      'The volunteer discusses the grouped genuine findings with Biosecurity Queensland experts to confirm what was seen and whether any next steps are appropriate.',
+      'Bio Buddies volunteers handle this — reporters do not need to take any action. Volunteers discuss the grouped genuine findings with Biosecurity Queensland experts to confirm what was seen and whether any next steps are appropriate.',
   },
   {
-    title: 'Collect if authorised',
+    title: 'Volunteer — Collect if authorised',
     body:
-      'Collection only happens when Biosecurity Queensland confirms it is safe and authorised. The volunteer then follows strict biosecurity precautions — never collect without official guidance.',
+      'Bio Buddies volunteers handle this — reporters do not need to take any action. Collection only happens when Biosecurity Queensland confirms it is safe and authorised. Volunteers follow strict biosecurity precautions throughout.',
   },
   {
-    title: 'Track progress',
+    title: 'Volunteer — Track progress',
     body:
-      'The mobile app and web application record outcomes, report statistics, and community progress so spotters and volunteers can see the impact of genuine findings.',
+      'Bio Buddies volunteers handle this — reporters do not need to take any action. Volunteers record outcomes and update community progress so everyone can see the real-world impact of genuine findings.',
   },
 ];
 

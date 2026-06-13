@@ -45,7 +45,7 @@ export function Footer() {
             Acknowledgement of Country
           </Typography>
           <Typography variant="body2" sx={{ lineHeight: 1.75, maxWidth: 720, color: palette.footerText }}>
-            Nature Ninjas respectfully acknowledges the Traditional Custodians of the lands and waters we
+            {site.name} respectfully acknowledges the Traditional Custodians of the lands and waters we
             learn on — including the Brisbane River and Kedron Brook — and their continuing connection to
             Country. We pay our respects to Elders past and present.
           </Typography>
@@ -69,8 +69,8 @@ export function Footer() {
             <Box component="figure" sx={{ m: 0, maxWidth: 140 }}>
               <Box
                 component="img"
-                src={`${import.meta.env.BASE_URL}images/qr/ghoulhunters-website-qr.png`}
-                alt="QR code linking to the Nature Ninjas website"
+                src={`${import.meta.env.BASE_URL}images/qr/bio-buddies-website-qr.png`}
+                alt={`QR code linking to the ${site.name} website`}
                 width={140}
                 height={140}
                 loading="lazy"

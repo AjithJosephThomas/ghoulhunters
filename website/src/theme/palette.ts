@@ -1,5 +1,5 @@
 /**
- * Nature Ninjas — NatGeo Kids–inspired palette
+ * Bio Buddies — NatGeo Kids–inspired palette
  * High contrast, warm accents, white backgrounds for readability.
  */
 export const palette = {

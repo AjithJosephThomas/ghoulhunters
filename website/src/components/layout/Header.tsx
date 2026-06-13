@@ -1,5 +1,4 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import { RiverBridgeIcon } from '../common/RiverBridgeIcon';
 import {
   AppBar,
   Box,
@@ -53,20 +52,6 @@ export function Header({ warningMessage }: HeaderProps) {
                 flexGrow: { xs: 1, md: 0 },
               }}
             >
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: 40,
-                  height: 40,
-                  borderRadius: 1,
-                  bgcolor: palette.yellow,
-                  color: palette.ink,
-                }}
-              >
-                <RiverBridgeIcon sx={{ fontSize: 28 }} />
-              </Box>
               <Typography variant="h6" sx={{ fontWeight: 800, lineHeight: 1.1, color: palette.ink }}>
                 {site.name}
               </Typography>

@@ -1,5 +1,7 @@
 import EmojiNatureIcon from '@mui/icons-material/EmojiNature';
 import GroupsIcon from '@mui/icons-material/Groups';
+import ParkIcon from '@mui/icons-material/Park';
+import WaterIcon from '@mui/icons-material/Water';
 import {
   Avatar,
   Box,
@@ -21,18 +23,16 @@ import { categoryColors } from '../theme/palette';
 import { usePageTitle } from '../hooks/usePageTitle';
 
 const team = [
-  { name: 'Volunteer A', role: 'Research & species facts', initial: 'A', color: 0 },
-  { name: 'Volunteer B', role: 'Website & blueprint', initial: 'B', color: 1 },
-  { name: 'Volunteer C', role: 'Posters & QR codes', initial: 'C', color: 2 },
-  { name: 'Volunteer D', role: 'Community outreach', initial: 'D', color: 3 },
-  { name: 'Volunteer E', role: 'Biosecurity messaging', initial: 'E', color: 4 },
-  { name: 'Our coordinators', role: 'Guidance & support', initial: 'T', color: 5 },
+  { name: 'Ava Bethel', logo: 'tree', color: 0 },
+  { name: "Darcy O'Dempsey", logo: 'river', color: 1 },
+  { name: 'Emilie Rose Joseph', logo: 'tree', color: 2 },
+  { name: 'Esther Rose Joseph', logo: 'river', color: 3 },
 ];
 
 export function WhoWeArePage() {
   const { site } = siteConfig;
 
-  usePageTitle('Who We Are', 'Meet the Nature Ninjas team — protecting biodiversity from invasive species.');
+  usePageTitle('Who We Are', `Meet the ${site.name} team — protecting biodiversity from invasive species.`);
 
   return (
     <>
@@ -49,8 +49,8 @@ export function WhoWeArePage() {
             watch programs and help neighbours protect <strong>nature</strong> and <strong>biodiversity</strong>.
           </Typography>
           <Typography paragraph sx={{ lineHeight: 1.75 }}>
-            We are <strong>Nature Ninjas</strong> — kids and neighbours who use our ninja skills to spot invasive
-            pests, report safely, and help experts keep Queensland&apos;s environment healthy.
+            We are <strong>{site.name}</strong> — kids and neighbours who look out for each other and our river,
+            spotting invasive pests, reporting safely, and helping experts keep Queensland&apos;s environment healthy.
           </Typography>
         </Reveal>
 
@@ -70,16 +70,16 @@ export function WhoWeArePage() {
         <Reveal sx={{ mt: 4 }}>
           <SectionTitle align="left">Our team</SectionTitle>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            Edit names and roles below — add photos to images/team/
+            We are four enthusiastic friends from Grade 5 O.
           </Typography>
         </Reveal>
 
         <StaggerGrid>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} justifyContent="center">
             {team.map((member) => {
               const colors = categoryColors[member.color];
               return (
-                <Grid item xs={12} sm={6} md={4} key={member.name}>
+                <Grid item xs={12} sm={6} md={5} lg={4} key={member.name}>
                   <StaggerItem>
                     <Card sx={{ p: 3, textAlign: 'center', height: '100%' }}>
                       <Avatar
@@ -94,10 +94,9 @@ export function WhoWeArePage() {
                           fontSize: '1.5rem',
                         }}
                       >
-                        {member.initial}
+                        {member.logo === 'tree' ? <ParkIcon sx={{ fontSize: 34 }} /> : <WaterIcon sx={{ fontSize: 34 }} />}
                       </Avatar>
                       <Typography variant="h6" sx={{ fontWeight: 800 }}>{member.name}</Typography>
-                      <Typography variant="body2" color="text.secondary">{member.role}</Typography>
                     </Card>
                   </StaggerItem>
                 </Grid>
